@@ -5,7 +5,7 @@ const Header = () => {
     return (
         <>
             <nav id='header' class='navbar navbar-shadow'>
-                <span class='navbar-brand h1'><AiOutlineMenu id = 'navbar-icon' />Smai Tmey</span>
+                <span class='navbar-brand h1'><AiOutlineMenu id = 'navbar-icon' />CAL SMEi-TMEi</span>
             </nav>
         </>
     );

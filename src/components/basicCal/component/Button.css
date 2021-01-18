@@ -1,0 +1,64 @@
+.component-button {
+  display: inline-flex;
+  width: 100px;
+  height: 79px;
+  flex: 1 0 auto;
+}
+
+.component-button.wide {
+  width: 50%;
+}
+
+
+
+.component-button button {
+  background-color: #52616B;
+  border: 0;
+  font-family: Helvetica Neue;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  margin: 0 1px 0 0;
+  flex: 1 0 auto;
+  padding: 0;
+  color: white;
+}
+
+.component-button:last-child button {
+  margin-right: 0;
+}
+
+.component-button.orange button {
+  background: #BB4444;
+  color: white;
+}
+
+.component-button.bbb button {
+  background: #C9D6DF;
+  color: #52616B;
+  
+}
+
+@media only screen and (max-width: 600px) {
+  .component-button {
+    display: inline-flex;
+    width: 50px;
+    height: 48.5px;
+    flex: 1 0 auto;
+  }
+  .component-button.wide {
+    width: 45%;
+  }
+  
+  
+  
+  .component-button button {
+    background-color: #52616B;
+    border: 0;
+    font-family: Helvetica Neue;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 18px;
+    
+  }
+}

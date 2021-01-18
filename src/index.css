@@ -1,0 +1,44 @@
+html {
+  height: 100%;
+  font-size: 10px;
+}
+
+body {
+
+  font-family: sans-serif;
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+  background: #F0F5F9;
+}
+
+#root {
+  height: 100%;
+}
+
+
+
+
+@media (min-width: 400px) and (min-height: 400px) {
+  html {
+    font-size: 40px;
+  }
+
+}
+@media (min-width: 500px) and (min-width: 500px) {
+  html {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 600px) and (min-height: 600px) {
+  html {
+    font-size: 40px;
+  }
+}
+
+@media (min-width: 800px) and (min-height: 800px) {
+  html {
+    font-size: 50px;
+  }
+}

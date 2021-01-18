@@ -1,0 +1,25 @@
+.component-display {
+  background-color: #C9D6DF;
+  text-align: right;
+
+  font-family: Helvetica Neue;
+  font-style: normal;
+  font-weight: 300;
+  color: #52616B;
+
+}
+
+.result {
+  font-size: 60px;
+  
+  padding: 0.5rem 0.7rem 0.18rem 0.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .result {
+    font-size: 30px;
+    
+    padding: 0.3rem 0.7rem 0.1rem 0.5rem;
+  }
+
+}
