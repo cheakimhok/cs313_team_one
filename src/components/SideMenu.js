@@ -1,4 +1,3 @@
-
 export const SideMenu = [
   {
     title: 'CAL SMEi-TMEi',
@@ -22,7 +21,7 @@ export const SideMenu = [
   },
   {
     title: 'Randomizer',
-    path: '/Randomizer',
+    path: '/SignIn',
     cName: 'nav-text'
   },
 ];
