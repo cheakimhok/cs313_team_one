@@ -12,10 +12,17 @@ export default class ButtonPanel extends React.Component {
   handleClick = buttonName => {
     this.props.clickHandler(buttonName);
   };
+  
 
   render() {
     return (
       <div className="component-button-panel">
+        <div>
+          <Button name="mc" clickHandler={this.handleClick} />
+          <Button name="m+" clickHandler={this.handleClick} />
+          <Button name="m-" clickHandler={this.handleClick} />
+          <Button name="mr" clickHandler={this.handleClick}  />
+        </div>
         <div>
           <Button name="AC" clickHandler={this.handleClick} orange />
           <Button name="-/+" clickHandler={this.handleClick} />

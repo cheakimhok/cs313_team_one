@@ -26,6 +26,11 @@ export default function calculate(obj, buttonName) {
     if (buttonName === "0" && obj.next === "0") {
       return {};
     }
+    // If the length is over 9 prevent input from the user 
+
+    if(obj.next?.length > 9)
+      return;
+      
     // If there is an operation, update next
     if (obj.operation) {
       if (obj.next) {
@@ -46,23 +51,15 @@ export default function calculate(obj, buttonName) {
       total: null,
     };
   }
-
+  
   if (buttonName === "%") {
-    if (obj.operation && obj.next) {
-      const result = operate(obj.total, obj.next, obj.operation);
+    if (obj.total != 0) {
+      const result = parseFloat(obj.total)/100;
       return {
-        total: Big(result)
-          .div(Big("100"))
-          .toString(),
-        next: null,
-        operation: null,
-      };
-    }
-    if (obj.next) {
-      return {
-        next: Big(obj.next)
-          .div(Big("100"))
-          .toString(),
+        total: result,
+        next: parseFloat(obj.next)/100,
+        operation: null
+        
       };
     }
     return {};
@@ -77,6 +74,32 @@ export default function calculate(obj, buttonName) {
       return { next: obj.next + "." };
     }
     return { next: "0." };
+  }
+  if (buttonName === 'mc') {
+    return {
+      memory: null
+    };
+  }
+  if (buttonName === 'mr') {
+    return {
+      next: obj.memory
+    };
+  }
+  if (buttonName === 'm-') {
+    if (obj.next === null) {
+      obj.next = obj.total
+    }
+    return {
+      memory: "-" + obj.next
+    };
+  }
+  if (buttonName === 'm+') {
+    if (obj.next === null) {
+      obj.next = obj.total
+    }
+    return {
+      memory: obj.next
+    };
   }
 
   if (buttonName === "=") {

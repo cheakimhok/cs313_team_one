@@ -32,7 +32,7 @@ body {
 .component-app {
     position: absolute;
     width: 400px;
-    height: 500px;
+    height: 614px;
     left: 520px;
     top: 295px;
   
@@ -42,16 +42,14 @@ body {
     border-radius: 5px;
   }
   
-  @media only screen and (max-width: 600px) {
+@media (max-width: 375px) {
     .component-app {
       position: absolute;
-      width: 250px;
-      height: 300px;
-      left: 520px;
-      top: 295px;
-  
+      width: 375px;
+      height: 500px;
+      left: 0px;
+      top: 150px;
     }
-  
 }
 
 @media (max-width: 700px) {

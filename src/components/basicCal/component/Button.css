@@ -1,6 +1,6 @@
 .component-button {
   display: inline-flex;
-  width: 100px;
+  width: 99.6px;
   height: 79px;
   flex: 1 0 auto;
 }
@@ -42,15 +42,13 @@
 @media only screen and (max-width: 600px) {
   .component-button {
     display: inline-flex;
-    width: 50px;
-    height: 48.5px;
+    width: 93px;
+    height: 63px;
     flex: 1 0 auto;
   }
   .component-button.wide {
-    width: 45%;
+    width: 187px;
   }
-  
-  
   
   .component-button button {
     background-color: #52616B;
