@@ -6,7 +6,7 @@
 }
 
 .component-button.wide {
-  width: 50%;
+  width: 48%;
 }
 
 
@@ -39,24 +39,6 @@
   
 }
 
-@media only screen and (max-width: 600px) {
-  .component-button {
-    display: inline-flex;
-    width: 93px;
-    height: 63px;
-    flex: 1 0 auto;
-  }
-  .component-button.wide {
-    width: 187px;
-  }
-  
-  .component-button button {
-    background-color: #52616B;
-    border: 0;
-    font-family: Helvetica Neue;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 18px;
-    
-  }
-}
+
+
+
