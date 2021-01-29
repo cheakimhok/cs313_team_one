@@ -5,6 +5,7 @@
   flex: 1 0 auto;
 }
 
+
 .component-button.wide {
   width: 48%;
 }
@@ -22,6 +23,10 @@
   flex: 1 0 auto;
   padding: 0;
   color: white;
+}
+.component-button button:hover {
+  background-color: #F0F5F9;
+  color: #52616B;
 }
 
 .component-button:last-child button {
