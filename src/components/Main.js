@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Header';
 // import SignIn from './SignIn';
 // import SignUp from './SignUp';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import BasicCal from './basicCal/component/App';
 
 const Main = () => {
@@ -10,7 +10,8 @@ const Main = () => {
         <div>
             <Header />
             <Switch>
-                <Route exact path="/BasicCalculator">
+                <Redirect exact from="/CAL_SMAi-TMEi" to="/BasicCalculator" />
+                <Route path="/BasicCalculator">
                     <BasicCal />
                 </Route>
                 <Route path="/a">
