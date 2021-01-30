@@ -114,6 +114,78 @@ textarea:focus {
     align-items: center;
 }
 
+.component-app {
+
+    width: 30%;
+    margin-left: 3%;
+    height: 614px;
+
+    margin-top: 286px;
+
+    border-radius: 10px;
+    background: #C9D6DF;
+    border: 1px solid #000000;
+    box-shadow: 2px 2px 8px 6px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+@media only screen and (max-width: 411px) {
+    .component-app {
+        margin-left: 5%;
+        width: 260px;
+        margin-top: 260px;
+        height: 376px;
+    }
+    .component-button {
+        display: inline-flex;
+        width: 64.84px;
+        height: 48.38px;
+        flex: 1 0 auto;
+      }
+      .component-button.wide {
+        width: 50.3%;
+      }
+      .component-button button {
+        font-weight: 500;
+        font-size: 18px;
+        
+      }
+      .result {
+        font-size: 48px;
+        padding: 0.15rem 0.3rem 0.0rem;
+      }
+}
+
+@media only screen and (min-width: 600px) {
+    .component-app {
+      margin-left: 10%;
+      width: 30%;
+      height: 614px;
+    }
+}
+
+@media only screen and (min-width: 720px) {
+    .component-app {
+      margin-left: 20%;
+      width: 30%;
+      height: 614px;
+    }
+}
+  
+@media only screen and (min-width: 968px) {
+    .component-app {
+      margin-left: auto;
+      margin-right: auto;
+      width: 30%;
+      height: 614px;
+      
+    }
+}
+
+
+
+@media (max-width: 700px) {
+    /* header */
 .navbar-toggle {
     background-color: #c9d6df;
     width: 100%;
@@ -128,6 +200,7 @@ textarea:focus {
 
 span {
     margin-left: 16px;
+}
 }
 
 @media only screen and (min-width: 300px) {
@@ -173,3 +246,4 @@ span {
         font-size: 26px;
     }
 }
+
