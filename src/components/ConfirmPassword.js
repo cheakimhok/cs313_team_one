@@ -5,7 +5,7 @@ import { BsFillEnvelopeFill, BsLockFill } from 'react-icons/bs';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
-const SignUp = () => {
+const ConfirmPassword = () => {
     const { register, handleSubmit, errors, watch } = useForm({
         criteriaMode: 'all',
     });
@@ -19,12 +19,12 @@ const SignUp = () => {
 
     return (
         <>
-            <Container id='sign-up'>
+            <Container id='confirm-password'>
                 <Row className='justify-content-center'>
-                    <p className='form-title'>Sign Up</p>
+                    <p className='form-title'>Reset Password</p>
                 </Row>
                 <Row className='justify-content-center paragraph'>
-                    <p className='mb-5 form-subtitle'>Create Your Free Account</p>
+                    <p className='mb-5 form-subtitle'>Please enter your new password</p>
                 </Row>
                 <Form fluid='md' onSubmit={handleSubmit(onSubmit)}>
                     <Row className='justify-content-center'>
@@ -47,7 +47,9 @@ const SignUp = () => {
                                         placeholder='Enter Email'
                                         required
                                     />
-                                    {errors.email && <p style={{ color: 'red' }}>{errors.email.message}</p>}
+                                    {errors.email && (
+                                        <p style={{ color: 'red' }}>{errors.email.message}</p>
+                                    )}
 
                                     <BsFillEnvelopeFill className='input-icon' />
                                 </div>
@@ -58,7 +60,7 @@ const SignUp = () => {
                     <Row className='justify-content-center'>
                         <Col lg={5} md={8} sm={10} xs={11}>
                             <Form.Group className='label-text'>
-                                <Form.Label className='form-label'>Password</Form.Label>
+                                <Form.Label className='form-label'>New Password</Form.Label>
                                 <div className='input-field'>
                                     <Form.Control
                                         autoComplete='off'
@@ -72,7 +74,8 @@ const SignUp = () => {
                                             },
                                             maxLength: {
                                                 value: 20,
-                                                message: 'Password must have less than 20 characters',
+                                                message:
+                                                    'Password must have less than 20 characters',
                                             },
                                         })}
                                         required
@@ -99,36 +102,25 @@ const SignUp = () => {
                                         type='password'
                                         ref={register({
                                             validate: (value) =>
-                                                value === password.current || 'The passwords do not match',
+                                                value === password.current ||
+                                                'The passwords do not match',
                                         })}
                                     />
                                     {errors.password_repeat && (
-                                        <p style={{ color: 'red' }}>{errors.password_repeat.message}</p>
+                                        <p style={{ color: 'red' }}>
+                                            {errors.password_repeat.message}
+                                        </p>
                                     )}
                                     <BsLockFill className='input-icon'></BsLockFill>
                                 </div>
                             </Form.Group>
                         </Col>
                     </Row>
+                    <br></br>
                     <Row className='mb-4'>
                         <Col style={{ textAlign: 'center' }}>
-                            Already have an account?
-                            <Link
-                                to='/signin'
-                                style={{
-                                    color: '#52616b',
-                                    fontWeight: '600px',
-                                    marginLeft: '5px',
-                                    textDecoration: 'none',
-                                }}>
-                                Sign In
-                            </Link>
-                        </Col>
-                    </Row>
-                    <Row className='mb-4'>
-                        <Col style={{ textAlign: 'center' }}>
-                            <Button className='sign-button' variant='white' type='submit'>
-                                Sign Up
+                            <Button className='confirm-password-button' variant='white' type='submit'>
+                                Reset Password
                             </Button>
                         </Col>
                     </Row>
@@ -138,4 +130,4 @@ const SignUp = () => {
     );
 };
 
-export default SignUp;
+export default ConfirmPassword;

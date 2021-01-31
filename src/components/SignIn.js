@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import './Authentication.css';
 import { Container, Col, Row, Form, Button } from 'react-bootstrap';
 import { BsFillEnvelopeFill, BsLockFill } from 'react-icons/bs';
 import { useForm } from 'react-hook-form';
@@ -78,6 +78,20 @@ const SignIn = () => {
                                     <BsLockFill className='input-icon'></BsLockFill>
                                 </div>
                             </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row className='mb-4 mt-3'>
+                        <Col style={{ textAlign: 'center' }}>
+                            <Link
+                                to='/ConfirmEmail'
+                                style={{
+                                    fontSize: '800',
+                                    color: '#52616b',
+                                    marginLeft: '6px',
+                                    textDecoration: 'none',
+                                }}>
+                                Forgot Password?
+                            </Link>
                         </Col>
                     </Row>
                     <Row className='mb-4 mt-3'>
