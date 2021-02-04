@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../ScientificCalculator.css';
+import './ScientificCalculator.css';
 import PointTarget from 'react-point';
 
 class AutoScalingText extends Component {
@@ -48,7 +48,6 @@ class CalculatorDisplay extends React.Component {
             maximumFractionDigits: 6,
         });
 
-        // Add back missing .0 in e.g. 12.0
         const match = value.match(/\.\d*?(0*)$/);
 
         if (match) formattedValue += /[1-9]/.test(match[0]) ? match[1] : match[0];
@@ -90,14 +89,23 @@ class ScientificCalculator extends React.Component {
         operator: null,
         waitingForOperand: false,
         shift: false,
+        degree: false,
         memory: {
             memory_plus: 0,
             memory_minus: 0,
             memory_recall: null,
         },
     };
+
+    degreeClick = () => {
+        this.setState((state) => {
+            return {
+                degree: !state.degree,
+            }
+        });
+    }
     
-    handleShiftClick = () => {
+    shiftClick = () => {
         this.setState((state) => {
             return {
                 shift: !state.shift,
@@ -152,9 +160,11 @@ class ScientificCalculator extends React.Component {
     }
 
     inputDot() {
-        const { displayValue } = this.state;
+        const { displayValue, waitingForOperand } = this.state;
 
-        if (!/\./.test(displayValue)) {
+        if (waitingForOperand === true) {
+            this.setState({ displayValue: '0.', waitingForOperand: false });
+        } else if (!/\./.test(displayValue)) {
             this.setState({
                 displayValue: displayValue + '.',
                 waitingForOperand: false,
@@ -207,7 +217,7 @@ class ScientificCalculator extends React.Component {
         });
     }
 
-    handleKeyDown = (event) => {
+    keyDown = (event) => {
         let { key } = event;
 
         if (key === 'Enter') key = '=';
@@ -269,6 +279,7 @@ class ScientificCalculator extends React.Component {
             },
         }));
     }
+
     memoryRecall() {
         let temp = (this.state.memory.memory_plus - this.state.memory.memory_minus).toString();
         this.setState({
@@ -276,14 +287,151 @@ class ScientificCalculator extends React.Component {
         });
     }
 
-    pi() {
+    power2() {
         const { displayValue } = this.state;
-        this.setState({ displayValue: String(displayValue * 3.1415926536) });
+        this.setState({ displayValue: String(Math.pow(parseFloat(displayValue), 2)) });
+    }
+
+    power3() {
+        const { displayValue } = this.state;
+        this.setState({ displayValue: String(Math.pow(parseFloat(displayValue), 3)) });
+    }
+
+    tenPowerX() {
+        const { displayValue } = this.state;
+        this.setState({ displayValue: String(Math.pow(10, parseFloat(displayValue))) });
+    }
+    
+    twoPowerX() {
+        const { displayValue } = this.state;
+        this.setState({ displayValue: String(Math.pow(2, parseFloat(displayValue))) });
+    }
+
+    pi() {
+        this.setState({ displayValue: String(Math.PI) });
     }
 
     exponent() {
+        this.setState({ displayValue: String(Math.exp(1)) });
+    }
+
+    rand() {
+        this.setState({ displayValue: String(Math.random()) });
+    }
+
+    sin() {
+        const { displayValue, degree } = this.state;
+
+        if (degree === false) {
+            this.setState({ displayValue: String(Math.sin(displayValue)) });
+        } else {
+            const result = String(Math.sin((parseFloat(displayValue) * Math.PI) / 180));
+            this.setState({ displayValue: result });
+        }
+    }
+
+    cos() {
+        const { displayValue, degree } = this.state;
+
+        if (degree === false) {
+            this.setState({ displayValue: String(Math.cos(displayValue)) });
+        } else {
+            const result = String(Math.cos((parseInt(displayValue) * Math.PI) / 180));
+            this.setState({ displayValue: result });
+        }
+    }
+
+    tan() {
+        const { displayValue, degree } = this.state;
+        if (degree === false) {
+            this.setState({ displayValue: String(Math.tan(displayValue)) });
+        } else {
+            if (displayValue === '90' || displayValue === '270') {
+                this.setState({ displayValue: 'Not a number' });
+            } else {
+                const result = String(Math.tan((parseFloat(displayValue) * Math.PI) / 180));
+                this.setState({ displayValue: result });
+            }
+        }
+    }
+
+    sinh() {
         const { displayValue } = this.state;
-        this.setState({ displayValue: String(displayValue * 2.7182818285) });
+        const result = String(Math.sinh(parseFloat(displayValue)));
+        this.setState({ displayValue: result });
+    }
+
+    cosh() {
+        const { displayValue } = this.state;
+        const result = String(Math.cosh(parseFloat(displayValue)));
+        this.setState({ displayValue: result });
+    }
+
+    tanh() {
+        const { displayValue } = this.state;
+        const result = String(Math.tanh(parseFloat(displayValue)));
+        this.setState({ displayValue: result });
+    }
+
+    sinInverse() {
+        const { displayValue, degree } = this.state;
+
+        if (degree === false) {
+            this.setState({ displayValue: String(Math.asin(displayValue)) });
+        } else {
+            const result = String((Math.asin(parseFloat(displayValue)) * 180) / Math.PI);
+            this.setState({ displayValue: result });
+        }
+    }
+
+    cosInverse() {
+        const { displayValue, degree } = this.state;
+
+        if (degree === false) {
+            this.setState({ displayValue: String(Math.acos(displayValue)) });
+        } else {
+            const result = String((Math.acos(parseFloat(displayValue)) * 180) / Math.PI);
+            this.setState({ displayValue: result });
+        }
+    }
+
+    tanInverse() {
+        const { displayValue, degree } = this.state;
+
+        if (degree === false) {
+            this.setState({ displayValue: String(Math.atan(displayValue)) });
+        } else {
+            const result = String((Math.atan(parseFloat(displayValue)) * 180) / Math.PI);
+            this.setState({ displayValue: result });
+        }
+    }
+
+    sinhInverse() {
+        const { displayValue } = this.state;
+        const result = String(Math.asinh(parseFloat(displayValue)));
+        this.setState({ displayValue: result });
+    }
+
+    coshInverse() {
+        const { displayValue } = this.state;
+        const result = String(Math.acosh(parseFloat(displayValue)));
+        this.setState({ displayValue: result });
+    }
+
+    tanhInverse() {
+        const { displayValue } = this.state;
+        const result = String(Math.atanh(parseFloat(displayValue)));
+        this.setState({ displayValue: result });
+    }
+
+    squareRoot() {
+        const { displayValue } = this.state;
+        this.setState({ displayValue: String(Math.sqrt(parseFloat(displayValue))) });
+    }
+
+    cubeRoot() {
+        const { displayValue } = this.state;
+        this.setState({ displayValue: String(Math.cbrt(parseFloat(displayValue))) });
     }
 
     factorial() {
@@ -331,7 +479,9 @@ class ScientificCalculator extends React.Component {
 
     multiplicativeInverse(){
         const { displayValue } = this.state;
-        if (displayValue === '0') return this.setState({displayValue: 'Non a number'});
+        if (displayValue === '0') {
+            this.setState({ displayValue: 'Not a number' });
+        }
         const result = String(1/displayValue);
         this.setState({ displayValue: result});
     }
@@ -344,11 +494,11 @@ class ScientificCalculator extends React.Component {
     }
 
     componentDidMount() {
-        document.addEventListener('keydown', this.handleKeyDown);
+        document.addEventListener('keydown', this.keyDown);
     }
 
     componentWillUnmount() {
-        document.removeEventListener('keydown', this.handleKeyDown);
+        document.removeEventListener('keydown', this.keyDown);
     }
 
     render() {
@@ -434,7 +584,7 @@ class ScientificCalculator extends React.Component {
                             {!this.state.shift ? (
                                 <CalculatorKey
                                     style={{ backgroundColor: '#52616b' }}
-                                    onPress={this.handleShiftClick}>
+                                    onPress={this.shiftClick}>
                                     2
                                     <sup>
                                         <small>nd</small>
@@ -443,7 +593,7 @@ class ScientificCalculator extends React.Component {
                             ) : (
                                 <CalculatorKey
                                     style={{ backgroundColor: '#52616b' }}
-                                    onPress={this.handleShiftClick}>
+                                    onPress={this.shiftClick}>
                                     1
                                     <sup>
                                         <small>st</small>
@@ -452,6 +602,7 @@ class ScientificCalculator extends React.Component {
                             )}
                             <CalculatorKey
                                 style={{ backgroundColor: '#52616b' }}
+                                onPress={() => this.power2()}
                             > x
                                 <sup>
                                     <small>
@@ -461,6 +612,7 @@ class ScientificCalculator extends React.Component {
                             </CalculatorKey>
                             <CalculatorKey
                                 style={{ backgroundColor: '#52616b' }}
+                                onPress={() => this.power3()}
                             > x
                                 <sup>
                                     <small>
@@ -470,6 +622,7 @@ class ScientificCalculator extends React.Component {
                             </CalculatorKey>
                             <CalculatorKey
                                 style={{ backgroundColor: '#52616b' }}
+                                onPress={() => this.power2()}
                             > x
                                 <sup>
                                     <small>
@@ -498,6 +651,7 @@ class ScientificCalculator extends React.Component {
                             {!this.state.shift ? (
                                 <CalculatorKey 
                                     style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.tenPowerX()}
                                 > 10
                                     <sup>
                                         <small>x</small>
@@ -506,6 +660,7 @@ class ScientificCalculator extends React.Component {
                             ) : (
                                 <CalculatorKey 
                                     style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.twoPowerX()}
                                 > 2
                                     <sup>
                                         <small>x</small>
@@ -544,6 +699,7 @@ class ScientificCalculator extends React.Component {
                             </CalculatorKey>
                             <CalculatorKey
                                 style={{ backgroundColor: '#52616b' }}
+                                onPress={() => this.squareRoot()}
                             >
                                 <sup>
                                     <small>
@@ -554,6 +710,7 @@ class ScientificCalculator extends React.Component {
                             </CalculatorKey>
                             <CalculatorKey
                                 style={{ backgroundColor: '#52616b' }}
+                                onPress={() => this.cubeRoot()}
                             >
                                 <sup>
                                     <small>
@@ -639,11 +796,13 @@ class ScientificCalculator extends React.Component {
                             {!this.state.shift ? (
                                 <CalculatorKey 
                                     style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.sin()}
                                 > sin
                                 </CalculatorKey>
                             ) : (
                                 <CalculatorKey 
                                     style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.sinInverse()}
                                 > sin
                                     <sup>
                                         <small>-1</small>
@@ -653,11 +812,13 @@ class ScientificCalculator extends React.Component {
                             {!this.state.shift ? (
                                 <CalculatorKey 
                                     style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.cos()}
                                 > cos
                                 </CalculatorKey>
                             ) : (
                                 <CalculatorKey 
                                     style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.cosInverse()}
                                 > cos
                                     <sup>
                                         <small>-1</small>
@@ -667,11 +828,13 @@ class ScientificCalculator extends React.Component {
                             {!this.state.shift ? (
                                 <CalculatorKey 
                                     style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.tan()}
                                 > tan
                                 </CalculatorKey>
                             ) : (
                                 <CalculatorKey 
                                     style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.tanhInverse()}
                                 > tan
                                     <sup>
                                         <small>-1</small>
@@ -714,20 +877,29 @@ class ScientificCalculator extends React.Component {
                             >
                                 +
                             </CalculatorKey>
-                            <CalculatorKey
-                                style={{ backgroundColor: '#52616b' }}
-                                onPress={() => this.inputDigit(4)}
-                            >
-                                Rad
-                            </CalculatorKey>
+                            {!this.state.degree ? (
+                                <CalculatorKey
+                                    style={{ backgroundColor: '#52616b'}}
+                                    onPress={this.degreeClick}>
+                                    Rad
+                                </CalculatorKey>
+                            ) : (
+                                <CalculatorKey
+                                    style={{ backgroundColor: '#52616b'}}
+                                    onPress={this.degreeClick}>
+                                    Deg
+                                </CalculatorKey>
+                            )}
                             {!this.state.shift ? (
                                 <CalculatorKey 
                                     style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.sinh()}
                                 > sinh
                                 </CalculatorKey>
                             ) : (
                                 <CalculatorKey 
                                     style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.sinhInverse()}
                                 > sinh
                                     <sup>
                                         <small>-1</small>
@@ -737,11 +909,13 @@ class ScientificCalculator extends React.Component {
                             {!this.state.shift ? (
                                 <CalculatorKey 
                                     style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.cosh()}
                                 > cosh
                                 </CalculatorKey>
                             ) : (
                                 <CalculatorKey 
                                     style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.coshInverse()}
                                 > cosh
                                     <sup>
                                         <small>-1</small>
@@ -751,11 +925,13 @@ class ScientificCalculator extends React.Component {
                             {!this.state.shift ? (
                                 <CalculatorKey 
                                     style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.tanh()}
                                 > tanh
                                 </CalculatorKey>
                             ) : (
                                 <CalculatorKey 
                                     style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.tanhInverse()}
                                 > tanh
                                     <sup>
                                         <small>-1</small>
@@ -770,6 +946,7 @@ class ScientificCalculator extends React.Component {
                             </CalculatorKey>
                             <CalculatorKey
                                 style={{ backgroundColor: '#52616b' }}
+                                onPress={() => this.rand()}
                             >
                                 Rand
                             </CalculatorKey>

@@ -49,7 +49,6 @@ button:focus {
     background-color: #c9d6df;
     box-shadow: 0 0 10px 10px #c4c4c4;
 }
-
 .button {
     display: block;
     background-color: #c9d6df;
@@ -83,32 +82,3 @@ button {
 .test {
     text-align: center;
 }
-
-/* @media only screen and (max-width: 400px) {
-    .calculator-body {
-        margin: 20px;
-        width: 320px;
-    }
-    .result {
-        width: 307px;
-        margin-left: 6px;
-        margin-right: 5px;
-    }
-}
-
-@media only screen and (max-width: 330px) {
-    .calculator-body {
-        margin: 20px;
-        width: 100%;
-    }
-    .result {
-        width: 300px;
-    }
-    button {
-        margin: 4px;
-        width: 21%;
-        height: 65px;
-        font-size: 30px;
-        border-radius: 5px;
-    }
-} */
