@@ -1,0 +1,84 @@
+body {
+    font-family: sans-serif;
+    position: relative;
+    background: #f0f5f9;
+}
+
+.result {
+    padding: 0.5rem 0.7rem 0.1rem 0.5rem;
+}
+
+.resultContainer {
+    border: thin solid black;
+    border-top: none;
+    border-left: none;
+    border-bottom: none;
+    background-color: #c9d6df;
+    text-align: right;
+    font-family: Helvetica Neue;
+    font-style: normal;
+    font-weight: 300;
+    color: #52616b;
+}
+
+.operator:hover {
+    filter: grayscale(100%);
+    color: #f0f5f9;
+}
+
+.result p {
+    font-size: 64px;
+    margin: 5px;
+}
+
+button:hover {
+    outline: none;
+    background-color: #f0f5f9 !important;
+    color: #52616b;
+}
+button:focus {
+    outline: none;
+}
+
+.calculator-body {
+    border: thin solid black;
+    border-right: none;
+    max-width: 876px;
+    margin: auto;
+    margin-top: 130px;
+    background-color: #c9d6df;
+    box-shadow: 0 0 10px 10px #c4c4c4;
+}
+.button {
+    display: block;
+    background-color: #c9d6df;
+}
+
+.memory {
+    color: white;
+    height: 65px !important;
+    font-size: 23px !important;
+}
+
+button {
+    border: 1px solid black;
+    border-left: none;
+    border-bottom: none;
+    color: white;
+    width: 87.5px;
+    height: 65px;
+    font-size: 25px;
+}
+
+.clear:hover {
+    background-color: #bb4444 !important;
+}
+
+.zero {
+    border: 1;
+    width: 20%;
+}
+
+.test {
+    text-align: center;
+}
