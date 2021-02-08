@@ -15,6 +15,12 @@ class UrlService {
   static registerUrl() {
     return apiDomain + "api/register";
   }
+  static forgotUrl() {
+    return apiDomain + 'api/password/email';
+  }
+  static resetPasswordUrl() {
+    return apiDomain + 'api/password/reset/{id}';
+  }
   // static saveUserProfileUrl() {
   //   return apiDomain + "api/user";
   // }

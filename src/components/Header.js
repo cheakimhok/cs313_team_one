@@ -3,14 +3,25 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { SideMenu } from '../components/SideMenu.js';
-import '../App.css';
+import './Authentication.css';
 import { IconContext } from 'react-icons';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-function Header() {
+function Header(props) {
     const [sideMenu, setSideMenu] = useState(false);
-
+    const history = useHistory();
     const showSideMenu = () => setSideMenu(!sideMenu);
-
+    const handleLogout = () => {
+        localStorage.clear()
+        props.setUser(null)
+        history.push('/signIn')
+    }
+    let shows;
+            if(props.user) {
+                shows = (
+                    <input type="button" onClick={handleLogout} value="Logout" />
+                )
+            }
     return (
         <>
             <IconContext.Provider value={{ color: '#52616b' }}>
@@ -19,6 +30,7 @@ function Header() {
                         <FaIcons.FaBars onClick={showSideMenu} />
                     </Link>
                     <span class='navbar-brand h1'>CAL SMEi-TMEi</span>
+                    {shows}
 
                 </div>
                 <nav className={sideMenu ? 'nav-menu active' : 'nav-menu'}>
@@ -46,3 +58,5 @@ function Header() {
 }
 
 export default Header;
+
+

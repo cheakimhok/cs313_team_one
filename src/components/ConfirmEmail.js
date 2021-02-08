@@ -4,7 +4,9 @@ import { Container, Col, Row, Form, Button } from 'react-bootstrap';
 import { BsFillEnvelopeFill } from 'react-icons/bs';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
+import UrlService from './services/UrlService';
 
 const ConfirmEmail = () => {
     const { register, handleSubmit, errors } = useForm({
@@ -12,7 +14,11 @@ const ConfirmEmail = () => {
     });
 
     const onSubmit = (data) => {
-        console.log(data);
+        axios.post(UrlService.forgotUrl(), data).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        });
     };
 
     return (
