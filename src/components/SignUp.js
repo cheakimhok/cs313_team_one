@@ -1,18 +1,37 @@
 import React, { useRef } from 'react';
-import './Authentication.css';
+
 import { Container, Col, Row, Form, Button } from 'react-bootstrap';
 import { BsFillEnvelopeFill, BsLockFill } from 'react-icons/bs';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import UrlService from './services/UrlService';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-const SignUp = () => {
+const SignUp = (props) => {
     const { register, handleSubmit, errors, watch } = useForm({
         criteriaMode: 'all',
     });
 
+    const history = useHistory();
     const onSubmit = (data) => {
-        console.log(data);
-    };
+
+        axios.post(UrlService.registerUrl(), data).then(
+            res => {
+                if(res.data.user) {
+                    localStorage.setItem('access_token', res.data.access_token);
+                    props.setUser(res.data.user);
+                    history.push('/randomizer')
+                } 
+                
+            }
+        ).catch (
+            err => {
+                console.log(err)
+                alert("This gmail is already exist")
+            }
+        )
+    }
 
     const password = useRef({});
     password.current = watch('password', '');
@@ -95,15 +114,15 @@ const SignUp = () => {
                                         autoComplete='off'
                                         required
                                         placeholder='Confirm Password'
-                                        name='password_repeat'
+                                        name='password_confirmation'
                                         type='password'
                                         ref={register({
                                             validate: (value) =>
                                                 value === password.current || 'The passwords do not match',
                                         })}
                                     />
-                                    {errors.password_repeat && (
-                                        <p style={{ color: 'red' }}>{errors.password_repeat.message}</p>
+                                    {errors.password_confirmation && (
+                                        <p style={{ color: 'red' }}>{errors.password_confirmation.message}</p>
                                     )}
                                     <BsLockFill className='input-icon'></BsLockFill>
                                 </div>

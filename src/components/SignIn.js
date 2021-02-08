@@ -1,19 +1,40 @@
-import React from 'react';
-import './Authentication.css';
+
+import '../App.css';
 import { Container, Col, Row, Form, Button } from 'react-bootstrap';
 import { BsFillEnvelopeFill, BsLockFill } from 'react-icons/bs';
 import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import AuthService from './services/AuthService'
 
-const SignIn = () => {
+
+
+
+
+
+
+const SignIn = (props) => {
+    const history = useHistory();
     const { register, handleSubmit, errors } = useForm({
         criteriaMode: 'all',
     });
 
-    const onSubmit = (data) => {
-        console.log(data);
-    };
+
+
+    async function onSubmit(data) {
+
+        const response = await AuthService.doUserLogin(data);
+
+        if (response.message === 'Invalid Credentials') {
+            alert("Please check your credentials and try agian");
+            localStorage.clear();
+          } else {
+            localStorage.setItem('access_token', response.access_token) 
+            props.setUser(response.user);
+            history.push('/randomizer')
+          }
+    }
 
     return (
         <>
@@ -73,25 +94,14 @@ const SignIn = () => {
                                         className='from-control'
                                         type='password'
                                         placeholder='Enter Password'
+                                        name='password'
+                                        ref={register({
+                                            required: 'This is required.'})}
                                         required
                                     />
                                     <BsLockFill className='input-icon'></BsLockFill>
                                 </div>
                             </Form.Group>
-                        </Col>
-                    </Row>
-                    <Row className='mb-4 mt-3'>
-                        <Col style={{ textAlign: 'center' }}>
-                            <Link
-                                to='/ConfirmEmail'
-                                style={{
-                                    fontSize: '800',
-                                    color: '#52616b',
-                                    marginLeft: '6px',
-                                    textDecoration: 'none',
-                                }}>
-                                Forgot Password?
-                            </Link>
                         </Col>
                     </Row>
                     <Row className='mb-4 mt-3'>
