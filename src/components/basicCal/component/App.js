@@ -3,8 +3,7 @@ import Display from "./Display";
 import ButtonPanel from "./ButtonPanel";
 import calculate from "../logic/calculate";
 import "./App.css";
-import { BrowserRouter as Router } from 'react-router-dom';
-import { object } from "prop-types";
+
 
 
 export default class BasicCal extends React.Component {

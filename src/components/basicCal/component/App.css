@@ -1,6 +1,6 @@
 .component-app {
 
-    width: 30%;
+    width: 400px;
     margin-left: 3%;
     height: 614px;
 
@@ -22,12 +22,12 @@
     }
     .component-button {
         display: inline-flex;
-        width: 64.84px;
-        height: 48.38px;
+        width: 64px;
+        height: 50px;
         flex: 1 0 auto;
       }
       .component-button.wide {
-        width: 50.3%;
+        width: 50%;
       }
       .component-button button {
         font-weight: 500;
@@ -46,6 +46,7 @@
       width: 30%;
       height: 614px;
     }
+    
 }
 
 @media only screen and (min-width: 720px) {

@@ -49,7 +49,7 @@ export default class ButtonPanel extends React.Component {
         </div>
         <div>
           <Button name="0" clickHandler={this.handleClick} wide />
-          <Button name="," clickHandler={this.handleClick} />
+          <Button name="." clickHandler={this.handleClick} />
           <Button name="=" clickHandler={this.handleClick} bbb />
         </div>
       </div>

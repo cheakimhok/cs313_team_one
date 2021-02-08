@@ -21,7 +21,7 @@ export const SideMenu = [
   },
   {
     title: 'Randomizer',
-    path: '/SignIn',
+    path: '/randomizer',
     cName: 'nav-text'
   },
 ];

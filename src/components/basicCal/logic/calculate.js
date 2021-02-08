@@ -65,7 +65,7 @@ export default function calculate(obj, buttonName) {
     return {};
   }
 
-  if (buttonName === ",") {
+  if (buttonName === ".") {
     if (obj.next) {
       // ignore a . if the next number already has one
       if (obj.next.includes(".")) {

@@ -23,8 +23,9 @@ export default class Button extends React.Component {
       this.props.wide ? "wide" : "",
       this.props.bbb ? "bbb" : "",
     ];
-
+    
     return (
+      
       <div className={className.join(" ").trim()}>
         <button onClick={this.handleClick}>{this.props.name}</button>
       </div>
