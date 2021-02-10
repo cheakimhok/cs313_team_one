@@ -52,8 +52,6 @@ class CalculatorDisplay extends React.Component {
 
         if (match) formattedValue += /[1-9]/.test(match[0]) ? match[1] : match[0];
 
-        if (formattedValue.length > 10) {
-        }
         return (
             <div {...props} className='calculator-display'>
                 <AutoScalingText>{formattedValue}</AutoScalingText>
