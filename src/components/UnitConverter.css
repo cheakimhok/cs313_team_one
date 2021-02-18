@@ -1,0 +1,134 @@
+body {
+    font-family: sans-serif;
+    position: relative;
+    background: #f0f5f9;
+}
+
+.tabs {
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 450px;
+    width: 800px;
+    padding: 30px 45px;
+    border: 1px solid #c9d6df;
+    background-color: #c9d6df;
+    box-shadow: 0px 4px 8px 0px #bcbcbc;
+    margin: auto;
+    margin-bottom: 120px;
+}
+
+.tab-list {
+    display: flex;
+    width: 800px;
+    margin: 120px auto 0;
+}
+
+.tab-list button {
+    font-weight: bold !important;
+}
+
+.tab {
+    outline: none;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 10px 16px;
+    color: #f0f5f9;
+    background-color: #52616b;
+    border: 1px solid #52616b;
+    box-shadow: 0px 2px 16px 2px #bcbcbc;
+    margin-right: 20px;
+    transition: color 0.16s ease-in-out, background-color 0.16s ease-in-out,
+        border-color 0.16s ease-in-out;
+}
+
+.tab:focus-visible {
+    box-shadow: 0 0 0 4px rgba(73, 39, 150, 0.5);
+}
+
+.tab:focus {
+    outline: none;
+}
+
+.tab:focus:not(:focus-visible) {
+    box-shadow: none;
+}
+
+.tab.active {
+    background-color: #c9d6df;
+    border-color: #c9d6df;
+    color: #52616b;
+    cursor: default;
+}
+
+.panel-list {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.panel {
+    position: absolute;
+}
+
+.panel-container {
+    display: grid;
+    grid-column-gap: 325px;
+    grid-template-columns: auto auto auto;
+}
+
+.panel-style {
+    font-weight: 600;
+    color: #52616b;
+}
+
+.input-container {
+    display: grid;
+    grid-column-gap: 50px;
+    grid-template-columns: auto auto auto;
+}
+
+.input-style {
+    padding-left: 10px;
+    width: 330px;
+    height: 45px;
+    border: 2px solid #52616b;
+    border-radius: 8px;
+    background-color: #f0f5f9;
+}
+
+.input-style:focus {
+    outline: none;
+}
+
+.list-container {
+    margin-top: 30px;
+    display: grid;
+    grid-column-gap: 50px;
+    grid-template-columns: auto auto auto;
+}
+
+.list-style {
+    padding: 10px;
+    font-size: large;
+    font-weight: 400;
+    color: #52616b;
+    padding: 12px;
+    width: 330px;
+    height: 270px;
+    border: 2px solid #52616b;
+    border-radius: 8px;
+    background-color: #f0f5f9;
+}
+
+.list-style:focus {
+    outline: none;
+}
+
+#unit-converter option {
+    margin-bottom: 5px;
+}
