@@ -1,22 +1,28 @@
 import './UnitConverter.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tabs, useTabState, Panel } from '@bumaga/tabs';
 
-const UnitConverter = () => {
-    const cn = (...args) => args.filter(Boolean).join(' ');
+const cn = (...args) => args.filter(Boolean).join(' ');
 
-    const Tab = ({ children }) => {
-        const { isActive, onClick } = useTabState();
-
-        return (
-            <button className={cn('tab', isActive && 'active')} onClick={onClick}>
-                {children}
-            </button>
-        );
-    };
+const Tab = ({ children }) => {
+    const { isActive, onClick } = useTabState();
 
     return (
-        <Tabs>
+        <button className={cn('tab', isActive && 'active')} onClick={onClick}>
+            {children}
+        </button>
+    );
+};
+
+const UnitConverter = () => {
+    const [index, setIndex] = useState(0);
+
+    useEffect(() => {
+        setIndex(1);
+    }, []);
+
+    return (
+        <Tabs state={[index, setIndex]}>
             <div className='tab-list'>
                 <Tab>Length</Tab>
                 <Tab>Weight</Tab>
