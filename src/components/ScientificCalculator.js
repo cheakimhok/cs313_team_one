@@ -38,7 +38,7 @@ class AutoScalingText extends Component {
     }
 }
 
-class CalculatorDisplay extends React.Component {
+class CalculatorDisplay extends Component {
     render() {
         const { value, ...props } = this.props;
 
@@ -60,7 +60,7 @@ class CalculatorDisplay extends React.Component {
     }
 }
 
-class CalculatorKey extends React.Component {
+class CalculatorKey extends Component {
     render() {
         const { onPress, className, ...props } = this.props;
 
@@ -80,7 +80,7 @@ const CalculatorOperations = {
     '=': (nextValue) => nextValue,
 };
 
-class ScientificCalculator extends React.Component {
+class ScientificCalculator extends Component {
     state = {
         value: null,
         displayValue: '0',
