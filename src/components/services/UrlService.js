@@ -19,7 +19,7 @@ class UrlService {
     return apiDomain + 'api/password/email';
   }
   static resetPasswordUrl() {
-    return apiDomain + 'api/password/reset/{id}';
+    return apiDomain + 'api/password/reset';
   }
   // static saveUserProfileUrl() {
   //   return apiDomain + "api/user";

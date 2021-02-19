@@ -17,11 +17,11 @@ function Header(props) {
         history.push('/signIn')
     }
     let shows;
-            if(props.user) {
-                shows = (
-                    <input type="button" onClick={handleLogout} value="Logout" />
-                )
-            }
+    if (props.user) {
+        shows = (
+            <input type="button" onClick={handleLogout} value="Logout" />
+        )
+    }
     return (
         <>
             <IconContext.Provider value={{ color: '#52616b' }}>
