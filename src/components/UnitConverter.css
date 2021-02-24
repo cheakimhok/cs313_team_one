@@ -16,7 +16,7 @@ body {
     background-color: #c9d6df;
     box-shadow: 0px 4px 8px 0px #bcbcbc;
     margin: auto;
-    margin-bottom: 120px;
+    margin-bottom: 70px;
 }
 
 .tab-list {
@@ -105,6 +105,22 @@ body {
     outline: none;
 }
 
+.display-style {
+    position: relative;
+    padding-left: 10px;
+    width: 330px;
+    height: 45px;
+    border: 2px solid #52616b;
+    border-radius: 8px;
+    background-color: #f0f5f9;
+}
+
+.display-style p {
+    margin: 0;
+    position: absolute;
+    bottom: 10px;
+}
+
 .list-container {
     margin-top: 30px;
     display: grid;
@@ -131,4 +147,20 @@ body {
 
 #unit-converter option {
     margin-bottom: 5px;
+}
+
+.submit-button {
+    font-weight: 600;
+    border: 2.2px solid var(--primaryColor);
+    border-radius: 20px;
+    height: 45px;
+    width: 150px;
+    color: #f0f5f9;
+    background-color: #52616b;
+    margin-bottom: 70px;
+}
+
+.submit-button:hover {
+    background-color: #f0f5f9;
+    color: #52616b;
 }
