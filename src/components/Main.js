@@ -7,25 +7,26 @@ import SignUp from './SignUp';
 import ConfirmEmail from './ConfirmEmail';
 import ConfirmPassword from './ConfirmPassword';
 import Randomizer from './randomizer/App';
-import UnitConverter from './converter/App';
 import UrlService from "./services/UrlService";
 import axios from 'axios';
 
 
 
 export default class Main extends React.Component {
-    state = {};
-    
+    state = { ready: false };
+
     componentDidMount = () => {
         axios.get(UrlService.currentUserProfileUrl()).then(
             res => {
                 this.setUser(res.data)
             }
-        ).catch (
+        ).catch(
             err => {
                 console.log(err)
             }
-        )
+        ).finally(() => {
+            this.setState({ ready: true })
+        })
     }
 
     setUser = user => {
@@ -35,23 +36,17 @@ export default class Main extends React.Component {
     }
 
     render() {
-        
         return (
             <div>
-                <Header user={this.state.user} setUser={this.setUser}/>
+                <Header user={this.state.user} setUser={this.setUser} />
                 <Switch>
                     <Redirect exact from="/CAL_SMAi-TMEi" to="/BasicCalculator" />
                     <Route path="/BasicCalculator"></Route>
-                    <Route path={'/UnitConverter'} component={UnitConverter} />
-                    
-                    {/* <Route path={'/signin'} component={SignIn} />
-                    <Route path={'/signup'} component={SignUp} /> */}
-                    <Route path={'/signin'} component={()=> <SignIn setUser={this.setUser} />} />
-                    <Route path={'/signup'} component={()=> <SignUp setUser={this.setUser} />} />
+                    {this.state.ready && <Route path={'/signin'} component={() => <SignIn setUser={this.setUser} />} />}
+                    <Route path={'/signup'} component={() => <SignUp setUser={this.setUser} />} />
                     <Route path={'/password/forgot'} component={ConfirmEmail} />
                     <Route path={'/password/reset/:token'} component={ConfirmPassword} />
-                    <Route path={'/randomizer'} component={() => <Randomizer user={this.state.user} setUser={this.setUser} />} />
-
+                    {this.state.ready && <Route path={'/randomizer'} component={() => <Randomizer user={this.state.user} setUser={this.setUser} />} />}
                 </Switch>
             </div>
         );

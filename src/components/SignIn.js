@@ -6,7 +6,8 @@ import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import AuthService from './services/AuthService'
+import UrlService from './services/UrlService'
+import axios from "axios"
 
 
 
@@ -20,20 +21,23 @@ const SignIn = (props) => {
         criteriaMode: 'all',
     });
 
-
-
+    //Handle Login
     async function onSubmit(data) {
+        axios.post(UrlService.loginUrl(), data).then(
+            res => {
+                if (res.data.user) {
+                    localStorage.setItem('access_token', res.data.access_token);
+                    props.setUser(res.data.user);
+                    history.push('/randomizer')
+                }
 
-        const response = await AuthService.doUserLogin(data);
-
-        if (response.message === 'Invalid Credentials') {
-            alert("Please check your credentials and try agian");
-            localStorage.clear();
-          } else {
-            localStorage.setItem('access_token', response.access_token) 
-            props.setUser(response.user);
-            history.push('/randomizer')
-          }
+            }
+        ).catch(
+            err => {
+                console.log(err)
+                alert(err.response.data.message)
+            }
+        )
     }
 
     return (
@@ -72,10 +76,10 @@ const SignIn = (props) => {
                                         render={({ messages }) => {
                                             return messages
                                                 ? Object.entries(messages).map(([type, message]) => (
-                                                      <p style={{ color: 'red' }} key={type}>
-                                                          {message}
-                                                      </p>
-                                                  ))
+                                                    <p style={{ color: 'red' }} key={type}>
+                                                        {message}
+                                                    </p>
+                                                ))
                                                 : null;
                                         }}
                                     />
@@ -96,12 +100,24 @@ const SignIn = (props) => {
                                         placeholder='Enter Password'
                                         name='password'
                                         ref={register({
-                                            required: 'This is required.'})}
+                                            required: 'This is required.'
+                                        })}
                                         required
                                     />
                                     <BsLockFill className='input-icon'></BsLockFill>
                                 </div>
                             </Form.Group>
+                        </Col>
+                    </Row>
+                    <Row className='mb-4 mt-3'>
+                        <Col style={{ textAlign: 'center' }}>
+                            <Link
+                                to='/password/forgot'
+                                style={{
+                                    fontSize: '800',
+                                }}>
+                                Forgotten Password?
+                            </Link>
                         </Col>
                     </Row>
                     <Row className='mb-4 mt-3'>

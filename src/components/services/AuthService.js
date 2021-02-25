@@ -14,13 +14,14 @@ class AuthService {
     try {
       const response = await axios.post(UrlService.loginUrl(), credentials);
 
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error("Error", error.response);
       return false;
     }
   }
-  
+
   handleLoginSuccess(response: any, remember: boolean) {
     if (!remember) {
       const options = { path: "/" };

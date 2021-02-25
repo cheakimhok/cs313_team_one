@@ -16,8 +16,9 @@ const ConfirmEmail = () => {
     const onSubmit = (data) => {
         axios.post(UrlService.forgotUrl(), data).then((res) => {
             console.log(res);
+            alert(res.data.message)
         }).catch((err) => {
-            console.log(err);
+            alert(err.response.data.message)
         });
     };
 
@@ -57,12 +58,12 @@ const ConfirmEmail = () => {
                                         render={({ messages }) => {
                                             return messages
                                                 ? Object.entries(messages).map(
-                                                      ([type, message]) => (
-                                                          <p style={{ color: 'red' }} key={type}>
-                                                              {message}
-                                                          </p>
-                                                      )
-                                                  )
+                                                    ([type, message]) => (
+                                                        <p style={{ color: 'red' }} key={type}>
+                                                            {message}
+                                                        </p>
+                                                    )
+                                                )
                                                 : null;
                                         }}
                                     />

@@ -5,12 +5,15 @@ import { Link } from 'react-router-dom';
 import { SideMenu } from '../components/SideMenu.js';
 import './Authentication.css';
 import { IconContext } from 'react-icons';
+import Avatar from '@material-ui/core/Avatar';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+
 
 function Header(props) {
     const [sideMenu, setSideMenu] = useState(false);
     const history = useHistory();
     const showSideMenu = () => setSideMenu(!sideMenu);
+
     const handleLogout = () => {
         localStorage.clear()
         props.setUser(null)
@@ -19,7 +22,19 @@ function Header(props) {
     let shows;
     if (props.user) {
         shows = (
-            <input type="button" onClick={handleLogout} value="Logout" />
+            <div className="login-logout">
+                <Link onClick={handleLogout} className='login'>
+                    Log out
+                </Link>
+            </div>
+        )
+    } else {
+        shows = (
+            <div className="login-logout">
+                <Link to='/Sign-In' className='login'>
+                    Log In
+                </Link>
+            </div>
         )
     }
     return (
@@ -31,8 +46,8 @@ function Header(props) {
                     </Link>
                     <span class='navbar-brand h1'>CAL SMEi-TMEi</span>
                     {shows}
-
                 </div>
+
                 <nav className={sideMenu ? 'nav-menu active' : 'nav-menu'}>
                     <ul className='nav-menu-items' onClick={showSideMenu}>
                         <li className='navbar-toggle'>

@@ -1,25 +1,25 @@
-let apiDomain = "";
-if (process.env.NODE_ENV === "production") {
-  apiDomain = "https://life-api.amitavroy.com/";
-} else {
-  apiDomain = "http://calsmaitmei-app.test/";
-}
+let apiDomain = "http://calsmaitmei-app.test/api/";;
+
+
 
 class UrlService {
   static loginUrl() {
-    return apiDomain + "api/login";
+    return apiDomain + "login";
   }
   static currentUserProfileUrl() {
-    return apiDomain + "api/user";
+    return apiDomain + "user";
   }
   static registerUrl() {
-    return apiDomain + "api/register";
+    return apiDomain + "register";
   }
   static forgotUrl() {
-    return apiDomain + 'api/password/email';
+    return apiDomain + 'password/email';
   }
   static resetPasswordUrl() {
-    return apiDomain + 'api/password/reset';
+    return apiDomain + 'password/reset';
+  }
+  static handleRandomizer() {
+    return apiDomain + 'randomizer/generate';
   }
   // static saveUserProfileUrl() {
   //   return apiDomain + "api/user";

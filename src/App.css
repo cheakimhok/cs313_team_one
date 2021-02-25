@@ -125,6 +125,19 @@ textarea:focus {
     justify-content: start;
     align-items: center;
 }
+.login-logout {
+    position: absolute;
+    right: 35px;
+    padding: 7px;
+    width: 75px;
+    background: #f0f5f9;
+    box-shadow: 0 0 0 0.2rem rgba(82, 97, 107, 0.582);
+    border-radius: 10px;
+}
+
+.login {
+    color: #52616B;
+}
 
 span {
     margin-left: 16px;

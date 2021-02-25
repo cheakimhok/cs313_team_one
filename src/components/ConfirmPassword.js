@@ -12,20 +12,18 @@ const ConfirmPassword = (props) => {
         criteriaMode: 'all',
         defaultValues: {
             token: props.match.params.token,
-          }
+        }
     });
 
-
-
-
+    // Handle Reset Password
     const onSubmit = (data) => {
-        axios.post(UrlService.resetPasswordUrl(), data).then((result) => {
-            console.log(result);
+        axios.post(UrlService.resetPasswordUrl(), data).then((res) => {
+            alert(res.data.message)
         }).catch((err) => {
-            console.log(err);
+            alert(err.response.data.message)
         });
     };
-    
+
 
     const password = useRef({});
     password.current = watch('password', '');
@@ -75,7 +73,7 @@ const ConfirmPassword = (props) => {
                             <Form.Group className='label-text'>
                                 <Form.Label className='form-label'>New Password</Form.Label>
                                 <div className='input-field'>
-                                <Form.Control
+                                    <Form.Control
                                         autoComplete='off'
                                         name='token'
                                         type='hidden'
