@@ -49,6 +49,7 @@ button:focus {
     background-color: #c9d6df;
     box-shadow: 0 0 10px 10px #c4c4c4;
 }
+
 .button {
     display: block;
     background-color: #c9d6df;
@@ -68,6 +69,7 @@ button {
     width: 87.5px;
     height: 65px;
     font-size: 25px;
+    text-align: center;
 }
 
 .clear:hover {
@@ -81,4 +83,83 @@ button {
 
 .test {
     text-align: center;
+}
+
+@media only screen and (max-width: 935px) {
+    .calculator-body {
+        max-width: 776px;
+    }
+
+    button {
+        width: 77.5px;
+    }
+}
+
+@media only screen and (max-width: 812px) {
+    .calculator-body {
+        max-width: 676px;
+    }
+
+    button {
+        width: 67.5px;
+        font-size: 22px;
+    }
+}
+
+@media only screen and (max-width: 715px) {
+    .calculator-body {
+        max-width: 576px;
+    }
+
+    button {
+        width: 57.5px;
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 605px) {
+    .calculator-body {
+        max-width: 476px;
+    }
+
+    button {
+        width: 47.5px;
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 505px) {
+    .calculator-body {
+        max-width: 376px;
+    }
+
+    button {
+        width: 37.5px;
+        font-size: 14px;
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 405px) {
+    .calculator-body {
+        max-width: 300px;
+    }
+
+    button {
+        width: 29.8px;
+        font-size: 12px;
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 330px) {
+    .calculator-body {
+        max-width: 276px;
+    }
+
+    button {
+        width: 27.5px;
+        font-size: 12px;
+        padding: 0;
+    }
 }
