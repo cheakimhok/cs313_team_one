@@ -76,20 +76,14 @@ body {
 }
 
 .panel-container {
-    display: grid;
-    grid-column-gap: 325px;
-    grid-template-columns: auto auto auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .panel-style {
     font-weight: 600;
     color: #52616b;
-}
-
-.input-container {
-    display: grid;
-    grid-column-gap: 50px;
-    grid-template-columns: auto auto auto;
 }
 
 .input-style {
@@ -123,9 +117,6 @@ body {
 
 .list-container {
     margin-top: 30px;
-    display: grid;
-    grid-column-gap: 50px;
-    grid-template-columns: auto auto auto;
 }
 
 .list-style {
@@ -145,7 +136,7 @@ body {
     outline: none;
 }
 
-#unit-converter option {
+.unit-converter option {
     margin-bottom: 5px;
 }
 
@@ -163,4 +154,350 @@ body {
 .submit-button:hover {
     background-color: #f0f5f9;
     color: #52616b;
+}
+
+@media only screen and (max-width: 900px) {
+    .tabs {
+        width: 700px;
+    }
+
+    .tab {
+        font-size: 15px;
+        padding: 10px 14px;
+    }
+
+    .tab-list {
+        width: 700px;
+    }
+
+    .input-style {
+        width: 280px;
+    }
+
+    .display-style {
+        width: 280px;
+    }
+
+    .list-style {
+        width: 280px;
+    }
+}
+
+@media only screen and (max-width: 780px) {
+    .tabs {
+        width: 650px;
+        padding: 30px 40px;
+    }
+
+    .tab {
+        font-size: 14px;
+        padding: 10px 12px;
+    }
+
+    .tab-list {
+        width: 650px;
+    }
+
+    .input-style {
+        width: 260px;
+    }
+
+    .display-style {
+        width: 260px;
+    }
+
+    .list-style {
+        width: 260px;
+        font-size: 18px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .tabs {
+        width: 600px;
+        padding: 30px 35px;
+    }
+
+    .tab {
+        font-size: 13px;
+        padding: 10px 10px;
+    }
+
+    .tab-list {
+        width: 600px;
+    }
+
+    .input-style {
+        width: 240px;
+    }
+
+    .display-style {
+        width: 240px;
+    }
+
+    .list-style {
+        width: 240px;
+        font-size: 17px;
+    }
+
+    .panel-style {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .panel-container {
+        flex-direction: column;
+    }
+
+    .tabs {
+        width: 500px;
+        height: 900px;
+        padding: 30px 35px;
+    }
+
+    .tab {
+        font-size: 13px;
+        padding: 10px 10px;
+        margin-right: 15px;
+    }
+
+    .tab-list {
+        width: 500px;
+        overflow: auto;
+    }
+
+    .input-style,
+    .display-style {
+        width: 100%;
+    }
+
+    .list-style {
+        width: 100%;
+        font-size: 17px;
+        overflow: auto;
+    }
+
+    .panel-style {
+        font-size: 14px;
+    }
+
+    .unit-from {
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 562px) {
+    .panel-container {
+        flex-direction: column;
+    }
+
+    .tabs {
+        width: 450px;
+        height: 900px;
+        padding: 30px 35px;
+        margin-bottom: 40px;
+    }
+
+    .tab {
+        font-size: 13px;
+        padding: 10px 10px;
+        margin-right: 15px;
+    }
+
+    .tab-list {
+        width: 450px;
+        overflow: auto;
+    }
+
+    .input-style,
+    .display-style {
+        width: 100%;
+    }
+
+    .list-style {
+        width: 100%;
+        font-size: 17px;
+        overflow: auto;
+    }
+
+    .panel-style {
+        font-size: 14px;
+    }
+
+    .unit-from {
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .panel-container {
+        flex-direction: column;
+    }
+
+    .tabs {
+        width: 400px;
+        height: 900px;
+        padding: 30px 35px;
+        margin-bottom: 40px;
+    }
+
+    .tab {
+        font-size: 13px;
+        padding: 10px 10px;
+        margin-right: 15px;
+    }
+
+    .tab-list {
+        width: 400px;
+        overflow: auto;
+    }
+
+    .input-style,
+    .display-style {
+        width: 100%;
+    }
+
+    .list-style {
+        width: 100%;
+        font-size: 17px;
+        overflow: auto;
+    }
+
+    .panel-style {
+        font-size: 14px;
+    }
+
+    .unit-from {
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 440px) {
+    .panel-container {
+        flex-direction: column;
+    }
+
+    .tabs {
+        width: 350px;
+        height: 900px;
+        padding: 30px 35px;
+        margin-bottom: 40px;
+    }
+
+    .tab {
+        font-size: 13px;
+        padding: 10px 10px;
+        margin-right: 15px;
+    }
+
+    .tab-list {
+        width: 350px;
+        overflow: auto;
+    }
+
+    .input-style,
+    .display-style {
+        width: 100%;
+    }
+
+    .list-style {
+        width: 100%;
+        font-size: 17px;
+        overflow: auto;
+    }
+
+    .panel-style {
+        font-size: 14px;
+    }
+
+    .unit-from {
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 376px) {
+    .panel-container {
+        flex-direction: column;
+    }
+
+    .tabs {
+        width: 320px;
+        height: 900px;
+        padding: 30px 35px;
+        margin-bottom: 40px;
+    }
+
+    .tab {
+        font-size: 13px;
+        padding: 10px 10px;
+        margin-right: 15px;
+    }
+
+    .tab-list {
+        width: 320px;
+        overflow: auto;
+    }
+
+    .input-style,
+    .display-style {
+        width: 100%;
+    }
+
+    .list-style {
+        width: 100%;
+        font-size: 17px;
+        overflow: auto;
+    }
+
+    .panel-style {
+        font-size: 14px;
+    }
+
+    .unit-from {
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .panel-container {
+        flex-direction: column;
+    }
+
+    .tabs {
+        width: 300px;
+        height: 900px;
+        padding: 30px 35px;
+        margin-bottom: 40px;
+    }
+
+    .tab {
+        font-size: 13px;
+        padding: 10px 10px;
+        margin-right: 15px;
+    }
+
+    .tab-list {
+        width: 300px;
+        overflow: auto;
+    }
+
+    .input-style,
+    .display-style {
+        width: 100%;
+    }
+
+    .list-style {
+        width: 100%;
+        font-size: 17px;
+        overflow: auto;
+    }
+
+    .panel-style {
+        font-size: 14px;
+    }
+
+    .unit-from {
+        margin-bottom: 20px;
+    }
 }

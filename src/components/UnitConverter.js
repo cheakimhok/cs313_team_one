@@ -57,386 +57,458 @@ const UnitConverter = () => {
                     {/* Length */}
                     <Panel>
                         <div className='panel-container'>
-                            <p className='panel-style'>FROM:</p>
-                            <p className='panel-style'>TO:</p>
-                        </div>
-                        <form>
-                            <div className='input-container'>
+                            <div className='unit-from'>
                                 <div>
-                                    <input
-                                        type='number'
-                                        className='input-style'
-                                        value={value}
-                                        onChange={(e) => setValue(e.target.value)}
-                                    />
+                                    <p className='panel-style'>FROM:</p>
+                                </div>
+                                <form>
+                                    <div>
+                                        <input
+                                            type='number'
+                                            className='input-style'
+                                            value={value}
+                                            onChange={(e) => setValue(e.target.value)}
+                                        />
+                                    </div>
+                                </form>
+                                <form className='unit-converter'>
+                                    <div className='list-container'>
+                                        <select
+                                            className='list-style'
+                                            value={unitFrom}
+                                            onChange={(e) => setUnitFrom([e.target.value])}
+                                            multiple
+                                        >
+                                            <option value='m'>Meter</option>
+                                            <option value='km'>Kilometer</option>
+                                            <option value='cm'>Centimeter</option>
+                                            <option value='mm'>Millimeter</option>
+                                            <option value='mi'>Mile</option>
+                                            <option value='yd'>Yard</option>
+                                            <option value='ft'>Feet</option>
+                                            <option value='in'>Inch</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div className='unitTo'>
+                                <div>
+                                    <p className='panel-style'>TO:</p>
                                 </div>
                                 <div className='display-style'>
                                     <p>{result}</p>
                                 </div>
+                                <form className='unit-converter'>
+                                    <div className='list-container'>
+                                        <select
+                                            className='list-style'
+                                            value={unitTo}
+                                            onChange={(e) => setUnitTo([e.target.value])}
+                                            multiple
+                                        >
+                                            <option value='m'>Meter</option>
+                                            <option value='km'>Kilometer</option>
+                                            <option value='cm'>Centimeter</option>
+                                            <option value='mm'>Millimeter</option>
+                                            <option value='mi'>Mile</option>
+                                            <option value='yd'>Yard</option>
+                                            <option value='ft'>Feet</option>
+                                            <option value='in'>Inch</option>
+                                        </select>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
-                        <form id='unit-converter'>
-                            <div className='list-container'>
-                                <select
-                                    className='list-style'
-                                    value={unitFrom}
-                                    onChange={(e) => setUnitFrom([e.target.value])}
-                                    multiple
-                                >
-                                    <option value='m'>Meter</option>
-                                    <option value='km'>Kilometer</option>
-                                    <option value='cm'>Centimeter</option>
-                                    <option value='mm'>Millimeter</option>
-                                    <option value='mi'>Mile</option>
-                                    <option value='yd'>Yard</option>
-                                    <option value='ft'>Feet</option>
-                                    <option value='in'>Inch</option>
-                                </select>
-                                <select
-                                    className='list-style'
-                                    value={unitTo}
-                                    onChange={(e) => setUnitTo([e.target.value])}
-                                    multiple
-                                >
-                                    <option value='m'>Meter</option>
-                                    <option value='km'>Kilometer</option>
-                                    <option value='cm'>Centimeter</option>
-                                    <option value='mm'>Millimeter</option>
-                                    <option value='mi'>Mile</option>
-                                    <option value='yd'>Yard</option>
-                                    <option value='ft'>Feet</option>
-                                    <option value='in'>Inch</option>
-                                </select>
-                            </div>
-                        </form>
+                        </div>
                     </Panel>
 
+                    {/*  */}
+                    {/*  */}
                     {/* Weight */}
                     <Panel>
                         <div className='panel-container'>
-                            <p className='panel-style'>FROM:</p>
-                            <p className='panel-style'>TO:</p>
-                        </div>
-                        <form>
-                            <div className='input-container'>
+                            <div className='unit-from'>
                                 <div>
-                                    <input
-                                        className='input-style'
-                                        type='number'
-                                        value={value}
-                                        onChange={(e) => setValue(e.target.value)}
-                                    />
+                                    <p className='panel-style'>FROM:</p>
+                                </div>
+                                <form>
+                                    <div>
+                                        <input
+                                            type='number'
+                                            className='input-style'
+                                            value={value}
+                                            onChange={(e) => setValue(e.target.value)}
+                                        />
+                                    </div>
+                                </form>
+                                <form className='unit-converter'>
+                                    <div className='list-container'>
+                                        <select
+                                            className='list-style'
+                                            value={unitFrom}
+                                            onChange={(e) => setUnitFrom([e.target.value])}
+                                            multiple
+                                        >
+                                            <option value='g'>Gram</option>
+                                            <option value='kg'>Kilogram</option>
+                                            <option value='mg'>Miligram</option>
+                                            <option value='lb'>Pound</option>
+                                            <option value='t'>Ton</option>
+                                            <option value='mt'>Metric Ton</option>
+                                            <option value='oz'>Ounce</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div className='unitTo'>
+                                <div>
+                                    <p className='panel-style'>TO:</p>
                                 </div>
                                 <div className='display-style'>
                                     <p>{result}</p>
                                 </div>
+                                <form className='unit-converter'>
+                                    <div className='list-container'>
+                                        <select
+                                            className='list-style'
+                                            value={unitTo}
+                                            onChange={(e) => setUnitTo([e.target.value])}
+                                            multiple
+                                        >
+                                            <option value='g'>Gram</option>
+                                            <option value='kg'>Kilogram</option>
+                                            <option value='mg'>Miligram</option>
+                                            <option value='lb'>Pound</option>
+                                            <option value='t'>Ton</option>
+                                            <option value='mt'>Metric Ton</option>
+                                            <option value='oz'>Ounce</option>
+                                        </select>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
-                        <form id='unit-converter'>
-                            <div className='list-container'>
-                                <select
-                                    className='list-style'
-                                    value={unitFrom}
-                                    onChange={(e) => setUnitFrom([e.target.value])}
-                                    multiple
-                                >
-                                    <option value='g'>Gram</option>
-                                    <option value='kg'>Kilogram</option>
-                                    <option value='mg'>Miligram</option>
-                                    <option value='lb'>Pound</option>
-                                    <option value='t'>Ton</option>
-                                    <option value='mt'>Metric Ton</option>
-                                    <option value='oz'>Ounce</option>
-                                </select>
-                                <select
-                                    className='list-style'
-                                    value={unitTo}
-                                    onChange={(e) => setUnitTo([e.target.value])}
-                                    multiple
-                                >
-                                    <option value='g'>Gram</option>
-                                    <option value='kg'>Kilogram</option>
-                                    <option value='mg'>Miligram</option>
-                                    <option value='lb'>Pound</option>
-                                    <option value='t'>Ton</option>
-                                    <option value='mt'>Metric Ton</option>
-                                    <option value='oz'>Ounce</option>
-                                </select>
-                            </div>
-                        </form>
+                        </div>
                     </Panel>
 
                     {/* Volume */}
                     <Panel>
                         <div className='panel-container'>
-                            <p className='panel-style'>FROM:</p>
-                            <p className='panel-style'>TO:</p>
-                        </div>
-                        <form>
-                            <div className='input-container'>
+                            <div className='unit-from'>
                                 <div>
-                                    <input
-                                        className='input-style'
-                                        type='number'
-                                        value={value}
-                                        onChange={(e) => setValue(e.target.value)}
-                                    />
+                                    <p className='panel-style'>FROM:</p>
+                                </div>
+                                <form>
+                                    <div>
+                                        <input
+                                            type='number'
+                                            className='input-style'
+                                            value={value}
+                                            onChange={(e) => setValue(e.target.value)}
+                                        />
+                                    </div>
+                                </form>
+                                <form className='unit-converter'>
+                                    <div className='list-container'>
+                                        <select
+                                            className='list-style'
+                                            value={unitFrom}
+                                            onChange={(e) => setUnitFrom([e.target.value])}
+                                            multiple
+                                        >
+                                            <option value='ml'>Militer</option>
+                                            <option value='l'>Liter</option>
+                                            <option value='m3'>Cubic Meter</option>
+                                            <option value='km3'>Cubic Kilometer</option>
+                                            <option value='cm3'>Cubic Centimeter</option>
+                                            <option value='mm3'>Cubic Milimeter</option>
+                                            <option value='gal'>US Gallon</option>
+                                            <option value='qt'>US Quart</option>
+                                            <option value='cup'>US Cup</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div className='unitTo'>
+                                <div>
+                                    <p className='panel-style'>TO:</p>
                                 </div>
                                 <div className='display-style'>
                                     <p>{result}</p>
                                 </div>
+                                <form className='unit-converter'>
+                                    <div className='list-container'>
+                                        <select
+                                            className='list-style'
+                                            value={unitTo}
+                                            onChange={(e) => setUnitTo([e.target.value])}
+                                            multiple
+                                        >
+                                            <option value='ml'>Militer</option>
+                                            <option value='l'>Liter</option>
+                                            <option value='m3'>Cubic Meter</option>
+                                            <option value='km3'>Cubic Kilometer</option>
+                                            <option value='cm3'>Cubic Centimeter</option>
+                                            <option value='mm3'>Cubic Milimeter</option>
+                                            <option value='gal'>US Gallon</option>
+                                            <option value='qt'>US Quart</option>
+                                            <option value='cup'>US Cup</option>
+                                        </select>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
-                        <form id='unit-converter'>
-                            <div className='list-container'>
-                                <select
-                                    className='list-style'
-                                    value={unitFrom}
-                                    onChange={(e) => setUnitFrom([e.target.value])}
-                                    multiple
-                                >
-                                    <option value='ml'>Militer</option>
-                                    <option value='l'>Liter</option>
-                                    <option value='m3'>Cubic Meter</option>
-                                    <option value='km3'>Cubic Kilometer</option>
-                                    <option value='cm3'>Cubic Centimeter</option>
-                                    <option value='mm3'>Cubic Milimeter</option>
-                                    <option value='gal'>US Gallon</option>
-                                    <option value='qt'>US Quart</option>
-                                    <option value='cup'>US Cup</option>
-                                </select>
-                                <select
-                                    className='list-style'
-                                    value={unitTo}
-                                    onChange={(e) => setUnitTo([e.target.value])}
-                                    multiple
-                                >
-                                    <option value='ml'>Militer</option>
-                                    <option value='l'>Liter</option>
-                                    <option value='m3'>Cubic Meter</option>
-                                    <option value='km3'>Cubic Kilometer</option>
-                                    <option value='cm3'>Cubic Centimeter</option>
-                                    <option value='mm3'>Cubic Milimeter</option>
-                                    <option value='gal'>US Gallon</option>
-                                    <option value='qt'>US Quart</option>
-                                    <option value='cup'>US Cup</option>
-                                </select>
-                            </div>
-                        </form>
+                        </div>
                     </Panel>
 
                     {/* Area */}
                     <Panel>
                         <div className='panel-container'>
-                            <p className='panel-style'>FROM:</p>
-                            <p className='panel-style'>TO:</p>
-                        </div>
-                        <form>
-                            <div className='input-container'>
+                            <div className='unit-from'>
                                 <div>
-                                    <input
-                                        className='input-style'
-                                        type='number'
-                                        value={value}
-                                        onChange={(e) => setValue(e.target.value)}
-                                    />
+                                    <p className='panel-style'>FROM:</p>
+                                </div>
+                                <form>
+                                    <div>
+                                        <input
+                                            type='number'
+                                            className='input-style'
+                                            value={value}
+                                            onChange={(e) => setValue(e.target.value)}
+                                        />
+                                    </div>
+                                </form>
+                                <form className='unit-converter'>
+                                    <div className='list-container'>
+                                        <select
+                                            className='list-style'
+                                            value={unitFrom}
+                                            onChange={(e) => setUnitFrom([e.target.value])}
+                                            multiple
+                                        >
+                                            <option value='m2'>Square Meter</option>
+                                            <option value='km2'>Square Kilometer</option>
+                                            <option value='cm2'>Square Centimeter</option>
+                                            <option value='mm2'>Square Millimeter</option>
+                                            <option value='in2'>Square Inch</option>
+                                            <option value='mi2'>Square Mile</option>
+                                            <option value='yd2'>Square Yard</option>
+                                            <option value='ha'>Hectare</option>
+                                            <option value='ac'>Acres</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div className='unitTo'>
+                                <div>
+                                    <p className='panel-style'>TO:</p>
                                 </div>
                                 <div className='display-style'>
                                     <p>{result}</p>
                                 </div>
+                                <form className='unit-converter'>
+                                    <div className='list-container'>
+                                        <select
+                                            className='list-style'
+                                            value={unitTo}
+                                            onChange={(e) => setUnitTo([e.target.value])}
+                                            multiple
+                                        >
+                                            <option value='m2'>Square Meter</option>
+                                            <option value='km2'>Square Kilometer</option>
+                                            <option value='cm2'>Square Centimeter</option>
+                                            <option value='mm2'>Square Millimeter</option>
+                                            <option value='in2'>Square Inch</option>
+                                            <option value='mi2'>Square Mile</option>
+                                            <option value='yd2'>Square Yard</option>
+                                            <option value='ha'>Hectare</option>
+                                            <option value='ac'>Acres</option>
+                                        </select>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
-                        <form id='unit-converter'>
-                            <div className='list-container'>
-                                <select
-                                    className='list-style'
-                                    value={unitFrom}
-                                    onChange={(e) => setUnitFrom([e.target.value])}
-                                    multiple
-                                >
-                                    <option value='m2'>Square Meter</option>
-                                    <option value='km2'>Square Kilometer</option>
-                                    <option value='cm2'>Square Centimeter</option>
-                                    <option value='mm2'>Square Millimeter</option>
-                                    <option value='in2'>Square Inch</option>
-                                    <option value='mi2'>Square Mile</option>
-                                    <option value='yd2'>Square Yard</option>
-                                    <option value='ha'>Hectare</option>
-                                    <option value='ac'>Acres</option>
-                                </select>
-                                <select
-                                    className='list-style'
-                                    value={unitTo}
-                                    onChange={(e) => setUnitTo([e.target.value])}
-                                    multiple
-                                >
-                                    <option value='m2'>Square Meter</option>
-                                    <option value='km2'>Square Kilometer</option>
-                                    <option value='cm2'>Square Centimeter</option>
-                                    <option value='mm2'>Square Millimeter</option>
-                                    <option value='in2'>Square Inch</option>
-                                    <option value='mi2'>Square Mile</option>
-                                    <option value='yd2'>Square Yard</option>
-                                    <option value='ha'>Hectare</option>
-                                    <option value='ac'>Acres</option>
-                                </select>
-                            </div>
-                        </form>
+                        </div>
                     </Panel>
 
                     {/* Data */}
                     <Panel>
                         <div className='panel-container'>
-                            <p className='panel-style'>FROM:</p>
-                            <p className='panel-style'>TO:</p>
-                        </div>
-                        <form>
-                            <div className='input-container'>
+                            <div className='unit-from'>
                                 <div>
-                                    <input
-                                        className='input-style'
-                                        type='number'
-                                        value={value}
-                                        onChange={(e) => setValue(e.target.value)}
-                                    />
+                                    <p className='panel-style'>FROM:</p>
+                                </div>
+                                <form>
+                                    <div>
+                                        <input
+                                            type='number'
+                                            className='input-style'
+                                            value={value}
+                                            onChange={(e) => setValue(e.target.value)}
+                                        />
+                                    </div>
+                                </form>
+                                <form className='unit-converter'>
+                                    <div className='list-container'>
+                                        <select
+                                            className='list-style'
+                                            value={unitFrom}
+                                            onChange={(e) => setUnitFrom([e.target.value])}
+                                            multiple
+                                        >
+                                            <option value='b'>Byte</option>
+                                            <option value='Kb'>Kilobyte</option>
+                                            <option value='Mb'>Megabyte</option>
+                                            <option value='Gb'>Gigabyte</option>
+                                            <option value='Tb'>Terabyte</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div className='unitTo'>
+                                <div>
+                                    <p className='panel-style'>TO:</p>
                                 </div>
                                 <div className='display-style'>
                                     <p>{result}</p>
                                 </div>
+                                <form className='unit-converter'>
+                                    <div className='list-container'>
+                                        <select
+                                            className='list-style'
+                                            value={unitTo}
+                                            onChange={(e) => setUnitTo([e.target.value])}
+                                            multiple
+                                        >
+                                            <option value='b'>Byte</option>
+                                            <option value='Kb'>Kilobyte</option>
+                                            <option value='Mb'>Megabyte</option>
+                                            <option value='Gb'>Gigabyte</option>
+                                            <option value='Tb'>Terabyte</option>
+                                        </select>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
-                        <form id='unit-converter'>
-                            <div className='list-container'>
-                                <select
-                                    className='list-style'
-                                    value={unitFrom}
-                                    onChange={(e) => setUnitFrom([e.target.value])}
-                                    multiple
-                                >
-                                    <option value='b'>Byte</option>
-                                    <option value='Kb'>Kilobyte</option>
-                                    <option value='Mb'>Megabyte</option>
-                                    <option value='Gb'>Gigabyte</option>
-                                    <option value='Tb'>Terabyte</option>
-                                </select>
-                                <select
-                                    className='list-style'
-                                    value={unitTo}
-                                    onChange={(e) => setUnitTo([e.target.value])}
-                                    multiple
-                                >
-                                    <option value='b'>Byte</option>
-                                    <option value='Kb'>Kilobyte</option>
-                                    <option value='Mb'>Megabyte</option>
-                                    <option value='Gb'>Gigabyte</option>
-                                    <option value='Tb'>Terabyte</option>
-                                </select>
-                            </div>
-                        </form>
+                        </div>
                     </Panel>
 
                     {/* Time */}
                     <Panel>
                         <div className='panel-container'>
-                            <p className='panel-style'>FROM:</p>
-                            <p className='panel-style'>TO:</p>
-                        </div>
-                        <form>
-                            <div className='input-container'>
+                            <div className='unit-from'>
                                 <div>
-                                    <input
-                                        className='input-style'
-                                        type='number'
-                                        value={value}
-                                        onChange={(e) => setValue(e.target.value)}
-                                    />
+                                    <p className='panel-style'>FROM:</p>
+                                </div>
+                                <form>
+                                    <div>
+                                        <input
+                                            type='number'
+                                            className='input-style'
+                                            value={value}
+                                            onChange={(e) => setValue(e.target.value)}
+                                        />
+                                    </div>
+                                </form>
+                                <form className='unit-converter'>
+                                    <div className='list-container'>
+                                        <select
+                                            className='list-style'
+                                            value={unitFrom}
+                                            onChange={(e) => setUnitFrom([e.target.value])}
+                                            multiple
+                                        >
+                                            <option value='s'>Second</option>
+                                            <option value='ms'>Millisecond</option>
+                                            <option value='min'>Minute</option>
+                                            <option value='h'>Hour</option>
+                                            <option value='d'>Day</option>
+                                            <option value='week'>Week</option>
+                                            <option value='month'>Month</option>
+                                            <option value='year'>Year</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div className='unitTo'>
+                                <div>
+                                    <p className='panel-style'>TO:</p>
                                 </div>
                                 <div className='display-style'>
                                     <p>{result}</p>
                                 </div>
+                                <form className='unit-converter'>
+                                    <div className='list-container'>
+                                        <select
+                                            className='list-style'
+                                            value={unitTo}
+                                            onChange={(e) => setUnitTo([e.target.value])}
+                                            multiple
+                                        >
+                                            <option value='s'>Second</option>
+                                            <option value='ms'>Millisecond</option>
+                                            <option value='min'>Minute</option>
+                                            <option value='h'>Hour</option>
+                                            <option value='d'>Day</option>
+                                            <option value='week'>Week</option>
+                                            <option value='month'>Month</option>
+                                            <option value='year'>Year</option>
+                                        </select>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
-                        <form id='unit-converter'>
-                            <div className='list-container'>
-                                <select
-                                    className='list-style'
-                                    value={unitFrom}
-                                    onChange={(e) => setUnitFrom([e.target.value])}
-                                    multiple
-                                >
-                                    <option value='s'>Second</option>
-                                    <option value='ms'>Millisecond</option>
-                                    <option value='min'>Minute</option>
-                                    <option value='h'>Hour</option>
-                                    <option value='d'>Day</option>
-                                    <option value='week'>Week</option>
-                                    <option value='month'>Month</option>
-                                    <option value='year'>Year</option>
-                                </select>
-                                <select
-                                    className='list-style'
-                                    value={unitTo}
-                                    onChange={(e) => setUnitTo([e.target.value])}
-                                    multiple
-                                >
-                                    <option value='s'>Second</option>
-                                    <option value='ms'>Millisecond</option>
-                                    <option value='min'>Minute</option>
-                                    <option value='h'>Hour</option>
-                                    <option value='d'>Day</option>
-                                    <option value='week'>Week</option>
-                                    <option value='month'>Month</option>
-                                    <option value='year'>Year</option>
-                                </select>
-                            </div>
-                        </form>
+                        </div>
                     </Panel>
 
                     {/* Temperature */}
                     <Panel>
                         <div className='panel-container'>
-                            <p className='panel-style'>FROM:</p>
-                            <p className='panel-style'>TO:</p>
-                        </div>
-                        <form>
-                            <div className='input-container'>
+                            <div className='unit-from'>
                                 <div>
-                                    <input
-                                        className='input-style'
-                                        type='number'
-                                        value={value}
-                                        onChange={(e) => setValue(e.target.value)}
-                                    />
+                                    <p className='panel-style'>FROM:</p>
+                                </div>
+                                <form>
+                                    <div>
+                                        <input
+                                            type='number'
+                                            className='input-style'
+                                            value={value}
+                                            onChange={(e) => setValue(e.target.value)}
+                                        />
+                                    </div>
+                                </form>
+                                <form className='unit-converter'>
+                                    <div className='list-container'>
+                                        <select
+                                            className='list-style'
+                                            value={unitFrom}
+                                            onChange={(e) => setUnitFrom([e.target.value])}
+                                            multiple
+                                        >
+                                            <option value='C'>Celsius</option>
+                                            <option value='K'>Kelvin</option>
+                                            <option value='F'>Fahrenheit</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div className='unitTo'>
+                                <div>
+                                    <p className='panel-style'>TO:</p>
                                 </div>
                                 <div className='display-style'>
                                     <p>{result}</p>
                                 </div>
+                                <form className='unit-converter'>
+                                    <div className='list-container'>
+                                        <select
+                                            className='list-style'
+                                            value={unitTo}
+                                            onChange={(e) => setUnitTo([e.target.value])}
+                                            multiple
+                                        >
+                                            <option value='C'>Celsius</option>
+                                            <option value='K'>Kelvin</option>
+                                            <option value='F'>Fahrenheit</option>
+                                        </select>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
-                        <form id='unit-converter'>
-                            <div className='list-container'>
-                                <select
-                                    className='list-style'
-                                    value={unitFrom}
-                                    onChange={(e) => setUnitFrom([e.target.value])}
-                                    multiple
-                                >
-                                    <option value='C'>Celsius</option>
-                                    <option value='K'>Kelvin</option>
-                                    <option value='F'>Fahrenheit</option>
-                                </select>
-                                <select
-                                    className='list-style'
-                                    value={unitTo}
-                                    onChange={(e) => setUnitTo([e.target.value])}
-                                    multiple
-                                >
-                                    <option value='C'>Celsius</option>
-                                    <option value='K'>Kelvin</option>
-                                    <option value='F'>Fahrenheit</option>
-                                </select>
-                            </div>
-                        </form>
+                        </div>
                     </Panel>
                 </div>
             </Tabs>
