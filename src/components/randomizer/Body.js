@@ -1,7 +1,9 @@
 import React, { useLayoutEffect } from 'react';
 import { Button, Row, Col, Card, ListGroup, ListGroupItem, Form } from 'react-bootstrap'
 import { useForm } from 'react-hook-form';
+
 export default class Body extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -28,9 +30,6 @@ export default class Body extends React.Component {
 
     }
 
-
-
-
     render() {
         let shows;
         let teamGen;
@@ -47,13 +46,20 @@ export default class Body extends React.Component {
                 <div className="result-body-teamgen">
                     {this.props.getResult.map((item, index) => (
                         <ul key={index}>
-                            <h3>Team {index + 1}</h3>
-                            <li>{item.join(" , ")}</li>
+                            <h5>Team {index + 1}</h5>
+                            <li>{item.join(" /  ")}</li>
                         </ul>
                     ))}
                 </div>
             )
+
         }
+
+        picker = (
+            <div className="result-body" >
+                {this.props.getResult}
+            </div >
+        )
         customList = (
             <div className="result-body-teamgen" >
                 {this.props.getResult.map((item, index) => (
@@ -63,11 +69,7 @@ export default class Body extends React.Component {
                 ))}
             </div>
         )
-        picker = (
-            <div className="result-body" >
-                {this.props.getResult}
-            </div >
-        )
+
 
         return (
             <Form onSubmit={this.handleSubmit}>
@@ -87,7 +89,7 @@ export default class Body extends React.Component {
                     <Col md="auto">
                         {shows}
                     </Col>
-                    <Col md="auto">
+                    <Col md=" offset-1 auto">
                         <Button as="input" type="submit" variant="secondary" value="Submit" className="submit" />{' '}
                     </Col>
                 </Row>

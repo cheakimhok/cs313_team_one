@@ -6,6 +6,7 @@
 body {
     font-family: var(--primaryFontFamily);
     background-color: #f0f5f9;
+    color: #52616b;
 }
 
 input:focus,
@@ -128,7 +129,7 @@ textarea:focus {
 .login-logout {
     position: absolute;
     right: 35px;
-    padding: 7px;
+    padding: 5px 10px;
     width: 75px;
     background: #f0f5f9;
     box-shadow: 0 0 0 0.2rem rgba(82, 97, 107, 0.582);

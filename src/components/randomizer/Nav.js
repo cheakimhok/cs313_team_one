@@ -13,7 +13,7 @@ const Nav = (props) => {
                 <ul style={{ listStyle: 'none', marginLeft: '0px' }} onClick={() =>
                     props.onSelectConverter(item)
                 } key={item}>
-                    <li className='converter-length'>{item}</li>
+                    <li className='randomizer-nav'>{item}</li>
                 </ul>
             ))}
         </Row>

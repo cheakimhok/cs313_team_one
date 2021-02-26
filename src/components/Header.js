@@ -31,7 +31,7 @@ function Header(props) {
     } else {
         shows = (
             <div className="login-logout">
-                <Link to='/Sign-In' className='login'>
+                <Link to='/SignIn' className='login'>
                     Log In
                 </Link>
             </div>

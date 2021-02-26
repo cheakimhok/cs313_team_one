@@ -9,6 +9,7 @@ import ConfirmPassword from './ConfirmPassword';
 import Randomizer from './randomizer/App';
 import UrlService from "./services/UrlService";
 import axios from 'axios';
+import InformationRandomizer from './randomizer/InformationRandomizer'
 
 
 
@@ -46,6 +47,7 @@ export default class Main extends React.Component {
                     <Route path={'/signup'} component={() => <SignUp setUser={this.setUser} />} />
                     <Route path={'/password/forgot'} component={ConfirmEmail} />
                     <Route path={'/password/reset/:token'} component={ConfirmPassword} />
+                    <Route path={'/randomizer/information'} component={InformationRandomizer} />
                     {this.state.ready && <Route path={'/randomizer'} component={() => <Randomizer user={this.state.user} setUser={this.setUser} />} />}
                 </Switch>
             </div>

@@ -38,36 +38,7 @@ const ConfirmPassword = (props) => {
                     <p className='mb-5 form-subtitle'>Please enter your new password</p>
                 </Row>
                 <Form fluid='md' onSubmit={handleSubmit(onSubmit)}>
-                    <Row className='justify-content-center'>
-                        <Col lg={5} md={8} sm={10} xs={11}>
-                            <Form.Group className='label-text'>
-                                <Form.Label className='form-label'>Email</Form.Label>
-                                <div className='input-field'>
-                                    <Form.Control
-                                        autoComplete='off'
-                                        ref={register({
-                                            required: 'This is required.',
-                                            pattern: {
-                                                value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-                                                message: 'Invalid Email Address',
-                                            },
-                                        })}
-                                        name='email'
-                                        className='from-control'
-                                        type='email'
-                                        placeholder='Enter Email'
-                                        required
-                                    />
-                                    {errors.email && (
-                                        <p style={{ color: 'red' }}>{errors.email.message}</p>
-                                    )}
 
-                                    <BsFillEnvelopeFill className='input-icon' />
-                                </div>
-                                <Form.Text className='text-muted'></Form.Text>
-                            </Form.Group>
-                        </Col>
-                    </Row>
                     <Row className='justify-content-center'>
                         <Col lg={5} md={8} sm={10} xs={11}>
                             <Form.Group className='label-text'>

@@ -21,6 +21,18 @@ class UrlService {
   static handleRandomizer() {
     return apiDomain + 'randomizer/generate';
   }
+  static SaveRandomizer() {
+    return apiDomain + 'randomizer';
+  }
+  static SaveRandomizerList() {
+    return apiDomain + 'randomizer';
+  }
+  static DeleteRandomizerList(id) {
+    return apiDomain + 'randomizer/' + id;
+  }
+  static ExportUrl() {
+    return apiDomain + 'export';
+  }
   // static saveUserProfileUrl() {
   //   return apiDomain + "api/user";
   // }
