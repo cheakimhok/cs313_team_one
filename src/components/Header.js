@@ -48,30 +48,29 @@ function Header(props) {
                     {shows}
                 </div>
 
-                <nav className={sideMenu ? 'nav-menu active' : 'nav-menu'}>
-                    <ul className='nav-menu-items' onClick={showSideMenu}>
-                        <li className='navbar-toggle'>
-                            <Link to='#' className='menu-close'>
-                                <AiIcons.AiOutlineClose />
-                            </Link>
-                        </li>
-                        {SideMenu.map((item, index) => {
-                            return (
-                                <li key={index} className={item.cName}>
-                                    <Link to={item.path}>
-                                        {item.icon}
-                                        <span>{item.title}</span>
-                                    </Link>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </nav>
-            </IconContext.Provider>
+            <nav className={sideMenu ? 'nav-menu active' : 'nav-menu'}>
+                <ul className='nav-menu-items' onClick={showSideMenu}>
+                    <li className='navbar-toggle'>
+                        <Link to='#' className='menu-close'>
+                            <AiIcons.AiOutlineClose />
+                        </Link>
+                    </li>
+                    {SideMenu.map((item, index) => {
+                        return (
+                            <li key={index} className={item.cName}>
+                                <Link to={item.path}>
+                                    {item.icon}
+                                    <span>{item.title}</span>
+                                </Link>
+                            </li>
+                        );
+                    })}
+                </ul>
+            </nav>
+        </IconContext.Provider>
         </>
     );
 }
 
 export default Header;
-
 

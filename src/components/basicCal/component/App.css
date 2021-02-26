@@ -1,0 +1,82 @@
+.component-app {
+
+    width: 400px;
+    margin-left: 3%;
+    height: 614px;
+
+    margin-top: 286px;
+
+    border-radius: 10px;
+    background: #C9D6DF;
+    border: 1px solid #000000;
+    box-shadow: 2px 2px 8px 6px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+@media only screen and (max-width: 411px) {
+    .component-app {
+        margin-left: 5%;
+        width: 260px;
+        margin-top: 260px;
+        height: 376px;
+    }
+    .component-button {
+        display: inline-flex;
+        width: 64px;
+        height: 50px;
+        flex: 1 0 auto;
+      }
+      .component-button.wide {
+        width: 50%;
+      }
+      .component-button button {
+        font-weight: 500;
+        font-size: 18px;
+        
+      }
+      .result {
+        font-size: 48px;
+        padding: 0.15rem 0.3rem 0.0rem;
+      }
+}
+.component-button-panel {
+  background-color: #858694;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 1 0 auto;
+}
+
+.component-button-panel > div {
+  width: 100%;
+  margin-bottom: 1px;
+  flex: 1 0 auto;
+  display: flex;
+}
+
+@media only screen and (min-width: 600px) {
+    .component-app {
+      margin-left: 10%;
+      width: 30%;
+      height: 614px;
+    }
+    
+}
+
+@media only screen and (min-width: 720px) {
+    .component-app {
+      margin-left: 20%;
+      width: 30%;
+      height: 614px;
+    }
+}
+  
+@media only screen and (min-width: 968px) {
+    .component-app {
+      margin-left: auto;
+      margin-right: auto;
+      width: 30%;
+      height: 614px;
+      
+    }
+}

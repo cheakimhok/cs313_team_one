@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import { Route, Switch, Redirect } from 'react-router-dom';
-// import BasicCal from './basicCal/component/App';
+import BasicCal from './basicCal/component/App';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import ConfirmEmail from './ConfirmEmail';
@@ -42,7 +42,7 @@ export default class Main extends React.Component {
                 <Header user={this.state.user} setUser={this.setUser} />
                 <Switch>
                     <Redirect exact from="/CAL_SMAi-TMEi" to="/BasicCalculator" />
-                    <Route path="/BasicCalculator"></Route>
+                    <Route path={'/BasicCalculator'} component={BasicCal} />
                     {this.state.ready && <Route path={'/signin'} component={() => <SignIn setUser={this.setUser} />} />}
                     <Route path={'/signup'} component={() => <SignUp setUser={this.setUser} />} />
                     <Route path={'/password/forgot'} component={ConfirmEmail} />
