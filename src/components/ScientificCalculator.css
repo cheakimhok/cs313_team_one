@@ -6,6 +6,7 @@ body {
 
 .result {
     padding: 0.5rem 0.7rem 0.1rem 0.5rem;
+    overflow: auto;
 }
 
 .resultContainer {

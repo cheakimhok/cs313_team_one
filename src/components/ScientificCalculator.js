@@ -16,6 +16,7 @@ class AutoScalingText extends Component {
         const actualScale = availableWidth / actualWidth;
 
         if (scale === actualScale) return;
+
         if (actualScale < 1) {
             this.setState({ scale: actualScale });
         } else if (scale < 1) {
@@ -106,6 +107,8 @@ class ScientificCalculator extends Component {
         isRightBracket: false,
         isDigit: false,
         isOperator: false,
+        countBracket: 0,
+        checkLeftBracket: false,
         memory: {
             memory_plus: 0,
             memory_minus: 0,
@@ -140,8 +143,11 @@ class ScientificCalculator extends Component {
             isMemoryActive: false,
             isBracketsActive: false,
             isRightBracket: false,
+            isLeftBracket: false,
             isDigit: false,
             isOperator: false,
+            countBracket: 0,
+            checkLeftBracket: false,
         });
     }
 
@@ -186,9 +192,7 @@ class ScientificCalculator extends Component {
     inputDot() {
         const { displayValue, waitingForOperand, isRightBracket } = this.state;
 
-        if (isRightBracket === true) {
-            this.setState({ displayValue: `${displayValue}*0.`, isRightBracket: false });
-        } else if (waitingForOperand === true) {
+        if (waitingForOperand === true) {
             this.setState({ displayValue: '0.', waitingForOperand: false });
         } else if (!/\./.test(displayValue)) {
             this.setState({
@@ -213,34 +217,17 @@ class ScientificCalculator extends Component {
 
             if (!hasDot && integer.length >= 10) return;
 
-            if (digit === Math.PI || digit === Math.exp(1)) {
-                this.clearDisplay();
-                return this.setState({
-                    displayValue: String(digit),
-                    isDigit: true,
-                    isOperator: false,
-                });
-            }
-
             if (done === true) {
                 this.clearAll();
-                this.setState({
-                    displayValue: String(digit),
-                    isDigit: true,
-                    isOperator: false,
-                });
-            } else if (isRightBracket === true) {
-                this.setState({
-                    displayValue: displayValue + '*' + digit,
-                    isRightBracket: false,
-                    isDigit: true,
-                    isOperator: false,
-                });
-            } else {
+                this.setState({ displayValue: String(digit), isDigit: true, isOperator: false });
+            }
+
+            else {
                 this.setState({
                     displayValue: displayValue === '0' ? String(digit) : displayValue + digit,
                     isDigit: true,
-                    isOperator: false,
+                    isOperator: true,
+                    checkLeftBracket: false,
                 });
             }
         }
@@ -259,11 +246,10 @@ class ScientificCalculator extends Component {
             isDigit,
             isOperator,
             ee,
+            countBracket,
         } = this.state;
 
-        this.setState({ isOperator: true, isDigit: false });
-
-        if (isRightBracket === false && nextOperator === '=' && isbracketsActive === true) {
+        if (nextOperator === '=' && countBracket !== 0) {
             return this.setState({
                 displayValue: 'Error',
                 isbracketsActive: false,
@@ -271,30 +257,30 @@ class ScientificCalculator extends Component {
             });
         }
 
-        if (isRightBracket === true) {
-            this.setState({ isRightBracket: false });
+        if (isOperator === false) {
+            return this.setState({ displayValue });
         }
 
         if (isbracketsActive === true && nextOperator === '=') {
-            this.setState({
+            return this.setState({
                 displayValue: String(eval(displayValue)),
                 isbracketsActive: false,
+                done: true,
             });
         } else if (isbracketsActive === true) {
-            if (isLeftBracket === true && isDigit === false && isOperator === true) {
-                if (nextOperator === '/' || nextOperator === '*') {
-                    this.setState({ displayValue });
-                } else {
-                    this.setState({
-                        displayValue: displayValue + nextOperator,
-                        isOperator: false,
-                    });
-                }
+
+            if (isDigit) {
+                this.setState({
+                    displayValue: displayValue + nextOperator,
+                    isOperator: false,
+                    isDigit: false,
+                    checkLeftBracket: false,
+                });
             }
+
         } else {
             const inputValue = parseFloat(displayValue);
 
-            // ee calculation
             if (ee === true) {
                 const currentValue = displayValue.replace(/\s/g, '');
                 return this.setState({
@@ -319,7 +305,6 @@ class ScientificCalculator extends Component {
                     value: newValue,
                     displayValue: String(newValue),
                     isMemoryActive: false,
-                    isRightBracket: false,
                 });
             }
 
