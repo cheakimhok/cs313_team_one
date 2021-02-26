@@ -11,8 +11,6 @@ import UrlService from "./services/UrlService";
 import axios from 'axios';
 import InformationRandomizer from './randomizer/InformationRandomizer'
 
-
-
 export default class Main extends React.Component {
     state = { ready: false };
 
