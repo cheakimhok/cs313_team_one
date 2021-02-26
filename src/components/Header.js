@@ -12,14 +12,13 @@ function Header() {
     const showSideMenu = () => setSideMenu(!sideMenu);
 
     return (
-        <>
+        <div id='header'>
             <IconContext.Provider value={{ color: '#52616b' }}>
                 <div className='navbar'>
                     <Link to='#' className='menu-bars'>
                         <FaIcons.FaBars onClick={showSideMenu} />
                     </Link>
                     <span class='navbar-brand h1'>CAL SMEi-TMEi</span>
-
                 </div>
                 <nav className={sideMenu ? 'nav-menu active' : 'nav-menu'}>
                     <ul className='nav-menu-items' onClick={showSideMenu}>
@@ -41,7 +40,7 @@ function Header() {
                     </ul>
                 </nav>
             </IconContext.Provider>
-        </>
+        </div>
     );
 }
 

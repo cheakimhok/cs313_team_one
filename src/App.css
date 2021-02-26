@@ -1,6 +1,6 @@
 :root {
     --primaryColor: #52616b;
-    --primaryFontFamily: 'Source Serif Pro', serif;
+    --primaryFontFamily: sans-serif;
 }
 
 body {
@@ -8,11 +8,11 @@ body {
     background-color: #f0f5f9;
 }
 
-input:focus,
+/* input:focus,
 textarea:focus {
     border-color: var(--primaryColor) !important;
     box-shadow: 0 0 0 0.2rem rgba(82, 97, 107, 0.582) !important;
-}
+} */
 
 /* Header */
 /* SideMenu */
@@ -126,7 +126,7 @@ textarea:focus {
     align-items: center;
 }
 
-span {
+#header span {
     margin-left: 16px;
 }
 
