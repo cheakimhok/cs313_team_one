@@ -22,15 +22,15 @@ export default function calculate(obj, buttonName) {
   }
 
   if (isNumber(buttonName)) {
-    
+
     if (buttonName === "0" && obj.next === "0") {
       return {};
     }
     // If the length is over 9 prevent input from the user 
 
-    if(obj.next?.length > 9)
+    if (obj.next?.length > 9)
       return;
-      
+
     // If there is an operation, update next
     if (obj.operation) {
       if (obj.next) {
@@ -51,15 +51,15 @@ export default function calculate(obj, buttonName) {
       total: null,
     };
   }
-  
+
   if (buttonName === "%") {
     if (obj.total != 0) {
-      const result = parseFloat(obj.total)/100;
+      const result = parseFloat(obj.total) / 100;
       return {
         total: result,
-        next: parseFloat(obj.next)/100,
+        next: parseFloat(obj.next) / 100,
         operation: null
-        
+
       };
     }
     return {};
@@ -75,14 +75,17 @@ export default function calculate(obj, buttonName) {
     }
     return { next: "0." };
   }
+
   if (buttonName === 'mc') {
     return {
       memory: null
     };
   }
   if (buttonName === 'mr') {
+
     return {
-      next: obj.memory
+
+      total: obj.memory
     };
   }
   if (buttonName === 'm-') {
@@ -148,10 +151,10 @@ export default function calculate(obj, buttonName) {
   if (!obj.next) {
     return { operation: buttonName };
   }
-  
 
 
-  
+
+
 
   // save the operation and shift 'next' into 'total'
   return {
