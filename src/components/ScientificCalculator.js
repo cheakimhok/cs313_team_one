@@ -6,7 +6,7 @@ class AutoScalingText extends Component {
     state = {
         scale: 1,
     };
- 
+
     componentDidUpdate() {
         const { scale } = this.state;
         const node = this.node;
@@ -220,9 +220,7 @@ class ScientificCalculator extends Component {
             if (done === true) {
                 this.clearAll();
                 this.setState({ displayValue: String(digit), isDigit: true, isOperator: false });
-            }
-
-            else {
+            } else {
                 this.setState({
                     displayValue: displayValue === '0' ? String(digit) : displayValue + digit,
                     isDigit: true,
@@ -268,7 +266,6 @@ class ScientificCalculator extends Component {
                 done: true,
             });
         } else if (isbracketsActive === true) {
-
             if (isDigit) {
                 this.setState({
                     displayValue: displayValue + nextOperator,
@@ -277,7 +274,6 @@ class ScientificCalculator extends Component {
                     checkLeftBracket: false,
                 });
             }
-
         } else {
             const inputValue = parseFloat(displayValue);
 
@@ -679,7 +675,7 @@ class ScientificCalculator extends Component {
         const clearText = clearDisplay ? 'C' : 'AC';
 
         return (
-            <div>
+            <div id='scientific-calculator'>
                 <div className='calculator-body'>
                     <div class='resultContainer'>
                         <div class='result'>

@@ -4,12 +4,12 @@ body {
     background: #f0f5f9;
 }
 
-.result {
+#scientific-calculator .result {
     padding: 0.5rem 0.7rem 0.1rem 0.5rem;
     overflow: auto;
 }
 
-.resultContainer {
+#scientific-calculator .resultContainer {
     border: thin solid black;
     border-top: none;
     border-left: none;
@@ -22,26 +22,27 @@ body {
     color: #52616b;
 }
 
-.operator:hover {
+#scientific-calculator .operator:hover {
     filter: grayscale(100%);
     color: #f0f5f9;
 }
 
-.result p {
+#scientific-calculator .result p {
     font-size: 64px;
     margin: 5px;
 }
 
-button:hover {
+#scientific-calculator button:hover {
     outline: none;
     background-color: #f0f5f9 !important;
     color: #52616b;
 }
-button:focus {
+
+#scientific-calculator button:focus {
     outline: none;
 }
 
-.calculator-body {
+#scientific-calculator .calculator-body {
     border: thin solid black;
     border-right: none;
     max-width: 876px;
@@ -51,18 +52,18 @@ button:focus {
     box-shadow: 0 0 10px 10px #c4c4c4;
 }
 
-.button {
+#scientific-calculator .button {
     display: block;
     background-color: #c9d6df;
 }
 
-.memory {
+#scientific-calculator .memory {
     color: white;
     height: 65px !important;
     font-size: 23px !important;
 }
 
-button {
+#scientific-calculator button {
     border: 1px solid black;
     border-left: none;
     border-bottom: none;
@@ -73,68 +74,68 @@ button {
     text-align: center;
 }
 
-.clear:hover {
+#scientific-calculator .clear:hover {
     background-color: #bb4444 !important;
 }
 
-.zero {
+#scientific-calculator .zero {
     border: 1;
     width: 20%;
 }
 
-.test {
+#scientific-calculator .test {
     text-align: center;
 }
 
 @media only screen and (max-width: 935px) {
-    .calculator-body {
+    #scientific-calculator .calculator-body {
         max-width: 776px;
     }
 
-    button {
+    #scientific-calculator button {
         width: 77.5px;
     }
 }
 
 @media only screen and (max-width: 812px) {
-    .calculator-body {
+    #scientific-calculator .calculator-body {
         max-width: 676px;
     }
 
-    button {
+    #scientific-calculator button {
         width: 67.5px;
         font-size: 22px;
     }
 }
 
 @media only screen and (max-width: 715px) {
-    .calculator-body {
+    #scientific-calculator .calculator-body {
         max-width: 576px;
     }
 
-    button {
+    #scientific-calculator button {
         width: 57.5px;
         font-size: 20px;
     }
 }
 
 @media only screen and (max-width: 605px) {
-    .calculator-body {
+    #scientific-calculator .calculator-body {
         max-width: 476px;
     }
 
-    button {
+    #scientific-calculator button {
         width: 47.5px;
         font-size: 16px;
     }
 }
 
 @media only screen and (max-width: 505px) {
-    .calculator-body {
+    #scientific-calculator .calculator-body {
         max-width: 376px;
     }
 
-    button {
+    #scientific-calculator button {
         width: 37.5px;
         font-size: 14px;
         padding: 0;
@@ -142,11 +143,11 @@ button {
 }
 
 @media only screen and (max-width: 405px) {
-    .calculator-body {
+    #scientific-calculator .calculator-body {
         max-width: 300px;
     }
 
-    button {
+    #scientific-calculator button {
         width: 29.8px;
         font-size: 12px;
         padding: 0;
@@ -154,11 +155,11 @@ button {
 }
 
 @media only screen and (max-width: 330px) {
-    .calculator-body {
+    #scientific-calculator .calculator-body {
         max-width: 276px;
     }
 
-    button {
+    #scientific-calculator button {
         width: 27.5px;
         font-size: 12px;
         padding: 0;
