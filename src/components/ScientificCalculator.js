@@ -1150,7 +1150,7 @@ class ScientificCalculator extends Component {
                                 .
                             </CalculatorKey>
                             <CalculatorKey
-                                style={{ backgroundColor: '#F0F5F9', color: '#52616b' }}
+                                style={{ backgroundColor: '#c9d6df', color: '#52616b' }}
                                 onPress={() => this.performOperation('=')}
                             >
                                 =

@@ -5,12 +5,9 @@
   flex: 1 0 auto;
 }
 
-
 .component-button.wide {
   width: 50%;
 }
-
-
 
 .component-button button {
   background-color: #52616B;
