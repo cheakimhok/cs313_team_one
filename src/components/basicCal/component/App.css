@@ -9,35 +9,7 @@
     overflow: hidden;
 }
 
-@media only screen and (max-width: 500px) {
-    .component-app {
-        margin-left: 5%;
-        width: 260px;
-        margin-top: 260px;
-        height: 376px;
-    }
 
-    .component-button {
-        display: inline-flex;
-        width: 64px;
-        height: 50px;
-        flex: 1 0 auto;
-    }
-
-    .component-button.wide {
-        width: 50%;
-    }
-
-    .component-button button {
-        font-weight: 500;
-        font-size: 18px;
-    }
-
-    #basicCal .result {
-        font-size: 48px;
-        padding: 0.15rem 0.3rem 0rem;
-    }
-}
 
 .component-button-panel {
     background-color: #858694;
@@ -54,27 +26,3 @@
     display: flex;
 }
 
-@media only screen and (min-width: 600px) {
-    .component-app {
-        margin-left: 10%;
-        width: 30%;
-        height: 614px;
-    }
-}
-
-@media only screen and (min-width: 720px) {
-    .component-app {
-        margin-left: 20%;
-        width: 30%;
-        height: 614px;
-    }
-}
-
-@media only screen and (min-width: 968px) {
-    .component-app {
-        margin-left: auto;
-        margin-right: auto;
-        width: 30%;
-        height: 614px;
-    }
-}

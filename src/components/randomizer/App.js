@@ -34,7 +34,7 @@ export default class randomizer extends Component {
             result: result,
         });
     }
-    
+
     handleGetQty = (qty) => {
         this.setState({
             qty: qty,
@@ -116,7 +116,6 @@ export default class randomizer extends Component {
                 break;
             case 'Yes or No':
                 type = 6;
-                console.log(this.state.customList);
                 break;
             default:
                 break;
@@ -129,7 +128,7 @@ export default class randomizer extends Component {
             return <Redirect to='/SignIn' />;
         }
         return (
-            <div>
+            <div className="randomizer-dev">
                 <Row className='justify-content-end m-2'>
                     <Button
                         variant='contained'
@@ -143,13 +142,14 @@ export default class randomizer extends Component {
                 </Row>
                 <div className='randomizer'>
                     <Row>
-                        <Nav onSelectConverter={this.handleSelectConverter} />
+                        <Nav onSelectRandomizer={this.handleSelectConverter} />
                         <Body
                             onGetData={this.handleGetData}
                             teamGenerator={this.state.tGenerator}
                             customListItem={this.state.customList}
                             getResult={this.state.result}
                             onGetQty={this.handleGetQty}
+                            getType={this.state.activeRandomizer}
                         />
                     </Row>
                 </div>

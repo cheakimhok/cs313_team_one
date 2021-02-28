@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from 'react';
-import { Button, Row, Col, Card, ListGroup, ListGroupItem, Form } from 'react-bootstrap';
+import { Button, Row, Col, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 
 export default class Body extends React.Component {
@@ -8,14 +8,15 @@ export default class Body extends React.Component {
         this.state = {
             currentTextareaValue: '',
             qty: React.createRef(),
-            data: React.createRef(),
+            data: "",
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        const a = this.state.data.current.value;
+        const a = this.state.data;
         const b = a.split('\n').filter((item) => item !== '');
 
         if (this.props.teamGenerator) {
@@ -24,8 +25,17 @@ export default class Body extends React.Component {
         } else {
             this.props.onGetData(b);
         }
-    }
+        if (this.props.getType == 6) {
+            this.setState({
+                data: "Yes\nNo"
+            })
+        }
 
+    }
+    handleChange(event) {
+        this.setState({ data: event.target.value });
+
+    }
     render() {
         let shows;
         let teamGen;
@@ -34,9 +44,9 @@ export default class Body extends React.Component {
 
         if (this.props.teamGenerator) {
             shows = (
-                <div>
-                    <label className='txt-group'>Groups </label>
-                    <input type='number' ref={this.state.qty} className='input-qty' name='qty' />
+                <div className="justify-content-center">
+                    <label className='txt-group justify-content-center'>Groups </label>
+                    <input type='number' ref={this.state.qty} className='input-qty' />
                 </div>
             );
 
@@ -52,6 +62,7 @@ export default class Body extends React.Component {
             );
         }
 
+
         picker = <div className='result-body'>{this.props.getResult}</div>;
 
         customList = (
@@ -63,32 +74,33 @@ export default class Body extends React.Component {
                 ))}
             </div>
         );
-
         return (
             <Form onSubmit={this.handleSubmit}>
                 <Row className='randomizer-body'>
-                    <Form.Group controlId='exampleForm.ControlTextarea1' className='item-nav'>
-                        <Form.Label>ITEM:</Form.Label>
+                    <Form.Group controlId='exampleForm.ControlTextarea1' className='result-item-nav'>
+                        <Form.Label>ITEMS :</Form.Label>
                         <Form.Control
                             as='textarea'
                             rows={15}
                             className='item-body'
-                            ref={this.state.data}
+                            value={this.state.data}
+                            onChange={this.handleChange}
+                        // ref={this.state.data}
                         />
                     </Form.Group>
-                    <Form.Group className='result-nav'>
-                        <Form.Label>RESULT: </Form.Label>
+                    <Form.Group className='result-item-nav'>
+                        <Form.Label>RESULT : </Form.Label>
                         {this.props.teamGenerator
                             ? teamGen
                             : this.props.customListItem
-                            ? customList
-                            : picker}
+                                ? customList
+                                : picker}
                         {/*<Form.Control readOnly rows={15} value={this.props.getResult}></Form.Control>*/}
                     </Form.Group>
                 </Row>
                 <Row className='justify-content-md-center body-sumbit'>
                     <Col md='auto'>{shows}</Col>
-                    <Col md=' offset-1 auto'>
+                    <Col md=' auto'>
                         <Button
                             as='input'
                             type='submit'

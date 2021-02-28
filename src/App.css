@@ -3,17 +3,6 @@
     --primaryFontFamily: sans-serif;
 }
 
-body {
-    font-family: var(--primaryFontFamily);
-    background-color: #f0f5f9;
-    color: #52616b;
-
-    position: relative;
-    width: 1440px;
-    height: 1081px;
-    background: #F0F5F9;
-
-}
 
 /* input:focus,
 textarea:focus {

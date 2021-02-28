@@ -28,21 +28,20 @@ export default function InteractiveList() {
     }, []);
 
     const handleExport = () => {
+
         axios
-            .get(UrlService.ExportUrl())
-            .then((res) => {
-                let fileURL = window.URL.createObjectURL(new Blob([res.data]));
-                let fileLink = document.createElement('a');
+            .get(UrlService.ExportUrl(), {
+                responseType: "blob",
+            })
+            .then((response) => {
+                const fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                const fileLink = document.createElement("a");
 
                 fileLink.href = fileURL;
-                fileLink.setAttribute('download', 'random.xls');
+                fileLink.setAttribute("download", "random.xls");
                 document.body.appendChild(fileLink);
 
                 fileLink.click();
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
             });
     };
     return (
