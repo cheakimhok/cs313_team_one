@@ -80,7 +80,7 @@ class CalculatorKey extends Component {
 }
 
 const CalculatorOperations = {
-    '/': (prevValue, nextValue) => prevValue / nextValue,
+    '/': (prevValue, nextValue) => (nextValue === 0 ? 'error' : prevValue / nextValue),
     '*': (prevValue, nextValue) => prevValue * nextValue,
     '+': (prevValue, nextValue) => prevValue + nextValue,
     '-': (prevValue, nextValue) => prevValue - nextValue,
@@ -190,7 +190,7 @@ class ScientificCalculator extends Component {
     }
 
     inputDot() {
-        const { displayValue, waitingForOperand, isRightBracket } = this.state;
+        const { displayValue, waitingForOperand } = this.state;
 
         if (waitingForOperand === true) {
             this.setState({ displayValue: '0.', waitingForOperand: false });
@@ -203,7 +203,7 @@ class ScientificCalculator extends Component {
     }
 
     inputDigit(digit) {
-        const { displayValue, waitingForOperand, done, isRightBracket } = this.state;
+        const { displayValue, waitingForOperand, done } = this.state;
 
         if (waitingForOperand) {
             this.setState({
@@ -239,8 +239,6 @@ class ScientificCalculator extends Component {
             waitingForOperand,
             isMemoryActive,
             isbracketsActive,
-            isRightBracket,
-            isLeftBracket,
             isDigit,
             isOperator,
             ee,
@@ -248,19 +246,15 @@ class ScientificCalculator extends Component {
         } = this.state;
 
         if (nextOperator === '=' && countBracket !== 0) {
-            return this.setState({
-                displayValue: 'Error',
+            this.setState({
+                displayValue: 'error',
                 isbracketsActive: false,
                 done: true,
             });
-        }
-
-        if (isOperator === false) {
-            return this.setState({ displayValue });
-        }
-
-        if (isbracketsActive === true && nextOperator === '=') {
-            return this.setState({
+        } else if (isOperator === false) {
+            this.setState({ displayValue });
+        } else if (isbracketsActive === true && nextOperator === '=') {
+            this.setState({
                 displayValue: String(eval(displayValue)),
                 isbracketsActive: false,
                 done: true,
@@ -382,6 +376,7 @@ class ScientificCalculator extends Component {
             this.setState({
                 displayValue: temp,
                 isMemoryActive: true,
+                waitingForOperand: true,
             });
         } else {
             this.setState({
@@ -411,14 +406,6 @@ class ScientificCalculator extends Component {
         const { displayValue } = this.state;
         this.setState({ displayValue: String(Math.pow(2, parseFloat(displayValue))), done: true });
     }
-
-    // pi() {
-    //     this.setState({ displayValue: String(Math.PI) });
-    // }
-
-    // exponent() {
-    //     this.setState({ displayValue: String(Math.exp(1)) });
-    // }
 
     rand() {
         this.setState({ displayValue: String(Math.random()) });
@@ -645,7 +632,7 @@ class ScientificCalculator extends Component {
 
         this.setState({
             displayValue:
-                displayValue === '0' || displayValue === 'Error'
+                displayValue === '0' || displayValue === 'error'
                     ? '('
                     : isDigit === true && isOperator === false
                     ? displayValue + '*('
@@ -1021,13 +1008,13 @@ class ScientificCalculator extends Component {
                             )}
                             <CalculatorKey
                                 style={{ backgroundColor: '#52616b' }}
-                                onPress={() => this.exponent()}
+                                onPress={() => this.inputDigit(Math.exp(1))}
                             >
                                 e
                             </CalculatorKey>
                             <CalculatorKey
                                 style={{ backgroundColor: '#52616b' }}
-                                onPress={() => this.inputDigit(4)}
+                                onPress={() => this.ee()}
                             >
                                 EE
                             </CalculatorKey>
