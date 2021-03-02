@@ -3,10 +3,6 @@
     --primaryFontFamily: sans-serif;
 }
 
-body {
-    font-family: var(--primaryFontFamily);
-    background-color: #f0f5f9;
-}
 
 /* input:focus,
 textarea:focus {
@@ -34,6 +30,25 @@ textarea:focus {
     padding: 0 !important;
 }
 
+.navbar-show {
+    position: absolute;
+    width: 125px;
+    height: 44px;
+    left: 1026px;
+    top: 38px;
+    border: 2px solid #52616b;
+
+    color: #52616b;
+}
+.navbar-shows {
+    position: absolute;
+    width: 125px;
+    height: 44px;
+    left: 1193px;
+    top: 38px;
+    border: 2px solid #52616b;
+    color: #52616b;
+}
 .menu-bars {
     margin-left: 2rem;
     font-size: 2.5rem;
@@ -124,6 +139,21 @@ textarea:focus {
     padding-left: 240px;
     justify-content: start;
     align-items: center;
+}
+
+.login-logout {
+    text-align: center;
+    position: absolute;
+    right: 35px;
+    padding: 5px 10px;
+    width: 75px;
+    background: #f0f5f9;
+    box-shadow: 0 0 0 0.2rem rgba(82, 97, 107, 0.582);
+    border-radius: 10px;
+}
+
+.login {
+    color: #52616b;
 }
 
 #header span {
