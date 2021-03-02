@@ -2,7 +2,7 @@
   "name": "cs313-team-one",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://cheakimhok.github.io/cs313_team_one",
+  "homepage": "http://cheakimhok.github.io/cs313_team_one/",
   "dependencies": {
     "@bumaga/tabs": "^0.2.0",
     "@hookform/error-message": "0.0.5",
