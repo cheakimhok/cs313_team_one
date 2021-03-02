@@ -1,4 +1,4 @@
-let apiDomain = "http://calsmaitmei-app.test/api/";;
+let apiDomain = "http://server.test/api/";;
 
 
 
