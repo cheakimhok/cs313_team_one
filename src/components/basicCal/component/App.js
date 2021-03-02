@@ -58,9 +58,11 @@ export default class BasicCal extends React.Component {
 
     render() {
         return (
-            <div id='basicCal' className='component-app'>
-                <Display value={this.state.next || this.state.total || '0'} />
-                <ButtonPanel clickHandler={this.handleClick} />
+            <div id='basicCal'>
+                <div  className='component-app'>
+                    <Display value={this.state.next || this.state.total || '0'} />
+                    <ButtonPanel clickHandler={this.handleClick} />
+                </div>
             </div>
         );
     }
