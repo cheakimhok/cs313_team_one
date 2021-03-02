@@ -41,8 +41,7 @@ export default class Main extends React.Component {
             <div>
                 <Header user={this.state.user} setUser={this.setUser} />
                 <Switch>
-                    <Route exact path='/' component={BasicCal} />
-                    <Redirect exact path='/cs313_team_one' component={BasicCal} />
+                    <Redirect exact from='/CAL_SMAi-TMEi' to='/BasicCalculator' />
                     <Route path={'/BasicCalculator'} component={BasicCal} />
                     {this.state.ready && (
                         <Route
