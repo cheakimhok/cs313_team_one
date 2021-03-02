@@ -80,7 +80,7 @@ class CalculatorKey extends Component {
 }
 
 const CalculatorOperations = {
-    '/': (prevValue, nextValue) => prevValue / nextValue,
+    '/': (prevValue, nextValue) => (nextValue === 0 ? 'error' : prevValue / nextValue),
     '*': (prevValue, nextValue) => prevValue * nextValue,
     '+': (prevValue, nextValue) => prevValue + nextValue,
     '-': (prevValue, nextValue) => prevValue - nextValue,
@@ -190,7 +190,7 @@ class ScientificCalculator extends Component {
     }
 
     inputDot() {
-        const { displayValue, waitingForOperand, isRightBracket } = this.state;
+        const { displayValue, waitingForOperand } = this.state;
 
         if (waitingForOperand === true) {
             this.setState({ displayValue: '0.', waitingForOperand: false });
@@ -203,7 +203,7 @@ class ScientificCalculator extends Component {
     }
 
     inputDigit(digit) {
-        const { displayValue, waitingForOperand, done, isRightBracket } = this.state;
+        const { displayValue, waitingForOperand, done } = this.state;
 
         if (waitingForOperand) {
             this.setState({
@@ -239,8 +239,6 @@ class ScientificCalculator extends Component {
             waitingForOperand,
             isMemoryActive,
             isbracketsActive,
-            isRightBracket,
-            isLeftBracket,
             isDigit,
             isOperator,
             ee,
@@ -248,19 +246,15 @@ class ScientificCalculator extends Component {
         } = this.state;
 
         if (nextOperator === '=' && countBracket !== 0) {
-            return this.setState({
-                displayValue: 'Error',
+            this.setState({
+                displayValue: 'error',
                 isbracketsActive: false,
                 done: true,
             });
-        }
-
-        if (isOperator === false) {
-            return this.setState({ displayValue });
-        }
-
-        if (isbracketsActive === true && nextOperator === '=') {
-            return this.setState({
+        } else if (isOperator === false) {
+            this.setState({ displayValue });
+        } else if (isbracketsActive === true && nextOperator === '=') {
+            this.setState({
                 displayValue: String(eval(displayValue)),
                 isbracketsActive: false,
                 done: true,
@@ -382,6 +376,7 @@ class ScientificCalculator extends Component {
             this.setState({
                 displayValue: temp,
                 isMemoryActive: true,
+                waitingForOperand: true,
             });
         } else {
             this.setState({
@@ -411,14 +406,6 @@ class ScientificCalculator extends Component {
         const { displayValue } = this.state;
         this.setState({ displayValue: String(Math.pow(2, parseFloat(displayValue))), done: true });
     }
-
-    // pi() {
-    //     this.setState({ displayValue: String(Math.PI) });
-    // }
-
-    // exponent() {
-    //     this.setState({ displayValue: String(Math.exp(1)) });
-    // }
 
     rand() {
         this.setState({ displayValue: String(Math.random()) });
@@ -645,11 +632,11 @@ class ScientificCalculator extends Component {
 
         this.setState({
             displayValue:
-                displayValue === '0' || displayValue === 'Error'
+                displayValue === '0' || displayValue === 'error'
                     ? '('
                     : isDigit === true && isOperator === false
-                        ? displayValue + '*('
-                        : displayValue + '(',
+                    ? displayValue + '*('
+                    : displayValue + '(',
             isbracketsActive: true,
             isRightBracket: false,
             isLeftBracket: true,
@@ -760,16 +747,16 @@ class ScientificCalculator extends Component {
                                     </sup>
                                 </CalculatorKey>
                             ) : (
-                                    <CalculatorKey
-                                        style={{ backgroundColor: '#52616b' }}
-                                        onPress={this.shiftClick}
-                                    >
-                                        1
-                                        <sup>
-                                            <small>st</small>
-                                        </sup>
-                                    </CalculatorKey>
-                                )}
+                                <CalculatorKey
+                                    style={{ backgroundColor: '#52616b' }}
+                                    onPress={this.shiftClick}
+                                >
+                                    1
+                                    <sup>
+                                        <small>st</small>
+                                    </sup>
+                                </CalculatorKey>
+                            )}
                             <CalculatorKey
                                 style={{ backgroundColor: '#52616b' }}
                                 onPress={() => this.power2()}
@@ -808,16 +795,16 @@ class ScientificCalculator extends Component {
                                     </sup>
                                 </CalculatorKey>
                             ) : (
-                                    <CalculatorKey
-                                        style={{ backgroundColor: '#52616b' }}
-                                        onPress={() => this.performOperation('yPowX')}
-                                    >
-                                        y
-                                        <sup>
-                                            <small>x</small>
-                                        </sup>
-                                    </CalculatorKey>
-                                )}
+                                <CalculatorKey
+                                    style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.performOperation('yPowX')}
+                                >
+                                    y
+                                    <sup>
+                                        <small>x</small>
+                                    </sup>
+                                </CalculatorKey>
+                            )}
                             {!this.state.shift ? (
                                 <CalculatorKey
                                     style={{ backgroundColor: '#52616b' }}
@@ -829,16 +816,16 @@ class ScientificCalculator extends Component {
                                     </sup>
                                 </CalculatorKey>
                             ) : (
-                                    <CalculatorKey
-                                        style={{ backgroundColor: '#52616b' }}
-                                        onPress={() => this.twoPowerX()}
-                                    >
-                                        2
-                                        <sup>
-                                            <small>x</small>
-                                        </sup>
-                                    </CalculatorKey>
-                                )}
+                                <CalculatorKey
+                                    style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.twoPowerX()}
+                                >
+                                    2
+                                    <sup>
+                                        <small>x</small>
+                                    </sup>
+                                </CalculatorKey>
+                            )}
                             <CalculatorKey
                                 style={{ backgroundColor: '#52616b' }}
                                 onPress={() => this.inputDigit(7)}
@@ -904,16 +891,16 @@ class ScientificCalculator extends Component {
                                     ln
                                 </CalculatorKey>
                             ) : (
-                                    <CalculatorKey
-                                        style={{ backgroundColor: '#52616b' }}
-                                        onPress={() => this.performOperation('logY')}
-                                    >
-                                        log
-                                        <sub>
-                                            <small>y</small>
-                                        </sub>
-                                    </CalculatorKey>
-                                )}
+                                <CalculatorKey
+                                    style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.performOperation('logY')}
+                                >
+                                    log
+                                    <sub>
+                                        <small>y</small>
+                                    </sub>
+                                </CalculatorKey>
+                            )}
                             {!this.state.shift ? (
                                 <CalculatorKey
                                     style={{ backgroundColor: '#52616b' }}
@@ -925,16 +912,16 @@ class ScientificCalculator extends Component {
                                     </sub>
                                 </CalculatorKey>
                             ) : (
-                                    <CalculatorKey
-                                        style={{ backgroundColor: '#52616b' }}
-                                        onPress={() => this.log2()}
-                                    >
-                                        log
-                                        <sub>
-                                            <small>2</small>
-                                        </sub>
-                                    </CalculatorKey>
-                                )}
+                                <CalculatorKey
+                                    style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.log2()}
+                                >
+                                    log
+                                    <sub>
+                                        <small>2</small>
+                                    </sub>
+                                </CalculatorKey>
+                            )}
                             <CalculatorKey
                                 style={{ backgroundColor: '#52616b' }}
                                 onPress={() => this.inputDigit(4)}
@@ -973,16 +960,16 @@ class ScientificCalculator extends Component {
                                     sin
                                 </CalculatorKey>
                             ) : (
-                                    <CalculatorKey
-                                        style={{ backgroundColor: '#52616b' }}
-                                        onPress={() => this.sinInverse()}
-                                    >
-                                        sin
-                                        <sup>
-                                            <small>-1</small>
-                                        </sup>
-                                    </CalculatorKey>
-                                )}
+                                <CalculatorKey
+                                    style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.sinInverse()}
+                                >
+                                    sin
+                                    <sup>
+                                        <small>-1</small>
+                                    </sup>
+                                </CalculatorKey>
+                            )}
                             {!this.state.shift ? (
                                 <CalculatorKey
                                     style={{ backgroundColor: '#52616b' }}
@@ -991,16 +978,16 @@ class ScientificCalculator extends Component {
                                     cos
                                 </CalculatorKey>
                             ) : (
-                                    <CalculatorKey
-                                        style={{ backgroundColor: '#52616b' }}
-                                        onPress={() => this.cosInverse()}
-                                    >
-                                        cos
-                                        <sup>
-                                            <small>-1</small>
-                                        </sup>
-                                    </CalculatorKey>
-                                )}
+                                <CalculatorKey
+                                    style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.cosInverse()}
+                                >
+                                    cos
+                                    <sup>
+                                        <small>-1</small>
+                                    </sup>
+                                </CalculatorKey>
+                            )}
                             {!this.state.shift ? (
                                 <CalculatorKey
                                     style={{ backgroundColor: '#52616b' }}
@@ -1009,16 +996,16 @@ class ScientificCalculator extends Component {
                                     tan
                                 </CalculatorKey>
                             ) : (
-                                    <CalculatorKey
-                                        style={{ backgroundColor: '#52616b' }}
-                                        onPress={() => this.tanhInverse()}
-                                    >
-                                        tan
-                                        <sup>
-                                            <small>-1</small>
-                                        </sup>
-                                    </CalculatorKey>
-                                )}
+                                <CalculatorKey
+                                    style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.tanhInverse()}
+                                >
+                                    tan
+                                    <sup>
+                                        <small>-1</small>
+                                    </sup>
+                                </CalculatorKey>
+                            )}
                             <CalculatorKey
                                 style={{ backgroundColor: '#52616b' }}
                                 onPress={() => this.inputDigit(Math.exp(1))}
@@ -1027,7 +1014,7 @@ class ScientificCalculator extends Component {
                             </CalculatorKey>
                             <CalculatorKey
                                 style={{ backgroundColor: '#52616b' }}
-                                onPress={() => this.inputDigit(4)}
+                                onPress={() => this.ee()}
                             >
                                 EE
                             </CalculatorKey>
@@ -1063,13 +1050,13 @@ class ScientificCalculator extends Component {
                                     Rad
                                 </CalculatorKey>
                             ) : (
-                                    <CalculatorKey
-                                        style={{ backgroundColor: '#52616b' }}
-                                        onPress={this.degreeClick}
-                                    >
-                                        Deg
-                                    </CalculatorKey>
-                                )}
+                                <CalculatorKey
+                                    style={{ backgroundColor: '#52616b' }}
+                                    onPress={this.degreeClick}
+                                >
+                                    Deg
+                                </CalculatorKey>
+                            )}
                             {!this.state.shift ? (
                                 <CalculatorKey
                                     style={{ backgroundColor: '#52616b' }}
@@ -1078,16 +1065,16 @@ class ScientificCalculator extends Component {
                                     sinh
                                 </CalculatorKey>
                             ) : (
-                                    <CalculatorKey
-                                        style={{ backgroundColor: '#52616b' }}
-                                        onPress={() => this.sinhInverse()}
-                                    >
-                                        sinh
-                                        <sup>
-                                            <small>-1</small>
-                                        </sup>
-                                    </CalculatorKey>
-                                )}
+                                <CalculatorKey
+                                    style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.sinhInverse()}
+                                >
+                                    sinh
+                                    <sup>
+                                        <small>-1</small>
+                                    </sup>
+                                </CalculatorKey>
+                            )}
                             {!this.state.shift ? (
                                 <CalculatorKey
                                     style={{ backgroundColor: '#52616b' }}
@@ -1096,16 +1083,16 @@ class ScientificCalculator extends Component {
                                     cosh
                                 </CalculatorKey>
                             ) : (
-                                    <CalculatorKey
-                                        style={{ backgroundColor: '#52616b' }}
-                                        onPress={() => this.coshInverse()}
-                                    >
-                                        cosh
-                                        <sup>
-                                            <small>-1</small>
-                                        </sup>
-                                    </CalculatorKey>
-                                )}
+                                <CalculatorKey
+                                    style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.coshInverse()}
+                                >
+                                    cosh
+                                    <sup>
+                                        <small>-1</small>
+                                    </sup>
+                                </CalculatorKey>
+                            )}
                             {!this.state.shift ? (
                                 <CalculatorKey
                                     style={{ backgroundColor: '#52616b' }}
@@ -1114,16 +1101,16 @@ class ScientificCalculator extends Component {
                                     tanh
                                 </CalculatorKey>
                             ) : (
-                                    <CalculatorKey
-                                        style={{ backgroundColor: '#52616b' }}
-                                        onPress={() => this.tanhInverse()}
-                                    >
-                                        tanh
-                                        <sup>
-                                            <small>-1</small>
-                                        </sup>
-                                    </CalculatorKey>
-                                )}
+                                <CalculatorKey
+                                    style={{ backgroundColor: '#52616b' }}
+                                    onPress={() => this.tanhInverse()}
+                                >
+                                    tanh
+                                    <sup>
+                                        <small>-1</small>
+                                    </sup>
+                                </CalculatorKey>
+                            )}
                             <CalculatorKey
                                 style={{ backgroundColor: '#52616b' }}
                                 onPress={() => this.inputDigit(Math.PI)}
@@ -1150,7 +1137,7 @@ class ScientificCalculator extends Component {
                                 .
                             </CalculatorKey>
                             <CalculatorKey
-                                style={{ backgroundColor: '#F0F5F9', color: '#52616b' }}
+                                style={{ backgroundColor: '#c9d6df', color: '#52616b' }}
                                 onPress={() => this.performOperation('=')}
                             >
                                 =
