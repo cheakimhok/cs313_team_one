@@ -57,7 +57,9 @@ class CalculatorDisplay extends Component {
             maximumFractionDigits: 10,
         });
 
-        if (value.endsWith('.')) formattedValue += '.';
+        const match = value.match(/\.\d*?(0*)$/);
+
+        if (match) formattedValue += /[1-9]/.test(match[0]) ? match[1] : match[0];
 
         return (
             <div {...props}>
@@ -190,10 +192,28 @@ class ScientificCalculator extends Component {
     }
 
     inputDot() {
-        const { displayValue, waitingForOperand } = this.state;
+        const {
+            displayValue,
+            waitingForOperand,
+            isBracketsActive,
+            countBracket,
+            isOperator,
+        } = this.state;
 
         if (waitingForOperand === true) {
-            this.setState({ displayValue: '0.', waitingForOperand: false });
+            if (isBracketsActive === true && countBracket === 0) {
+                this.setState({
+                    displayValue: displayValue + '*0.',
+                    waitingForOperand: false,
+                });
+            } else if (isBracketsActive === true && isOperator === true) {
+                this.setState({
+                    displayValue: displayValue + '0.',
+                    waitingForOperand: false,
+                });
+            } else {
+                this.setState({ displayValue: '0.', waitingForOperand: false });
+            }
         } else if (!/\./.test(displayValue)) {
             this.setState({
                 displayValue: displayValue + '.',
@@ -219,7 +239,11 @@ class ScientificCalculator extends Component {
 
             if (done === true) {
                 this.clearAll();
-                this.setState({ displayValue: String(digit), isDigit: true, isOperator: false });
+                this.setState({
+                    displayValue: String(digit),
+                    isDigit: true,
+                    isOperator: false,
+                });
             } else {
                 this.setState({
                     displayValue: displayValue === '0' ? String(digit) : displayValue + digit,
@@ -238,7 +262,7 @@ class ScientificCalculator extends Component {
             operator,
             waitingForOperand,
             isMemoryActive,
-            isbracketsActive,
+            isBracketsActive,
             isDigit,
             isOperator,
             ee,
@@ -246,20 +270,24 @@ class ScientificCalculator extends Component {
         } = this.state;
 
         if (nextOperator === '=' && countBracket !== 0) {
-            this.setState({
+            return this.setState({
                 displayValue: 'error',
-                isbracketsActive: false,
+                isBracketsActive: false,
                 done: true,
             });
-        } else if (isOperator === false) {
-            this.setState({ displayValue });
-        } else if (isbracketsActive === true && nextOperator === '=') {
-            this.setState({
+        }
+
+        if (isOperator === false) {
+            return this.setState({ displayValue });
+        }
+
+        if (isBracketsActive === true && nextOperator === '=') {
+            return this.setState({
                 displayValue: String(eval(displayValue)),
-                isbracketsActive: false,
+                isBracketsActive: false,
                 done: true,
             });
-        } else if (isbracketsActive === true) {
+        } else if (isBracketsActive === true) {
             if (isDigit) {
                 this.setState({
                     displayValue: displayValue + nextOperator,
@@ -376,7 +404,7 @@ class ScientificCalculator extends Component {
             this.setState({
                 displayValue: temp,
                 isMemoryActive: true,
-                waitingForOperand: true,
+                done: true,
             });
         } else {
             this.setState({
@@ -589,7 +617,7 @@ class ScientificCalculator extends Component {
         const { displayValue } = this.state;
 
         if (displayValue === '0') {
-            this.setState({ displayValue: 'Not a number' });
+            return this.setState({ displayValue: 'error', done: true });
         }
 
         const result = String(1 / displayValue);
@@ -628,30 +656,45 @@ class ScientificCalculator extends Component {
     }
 
     leftBracket() {
-        const { displayValue, isDigit, isOperator } = this.state;
+        const { displayValue, isOperator, countBracket, checkLeftBracket } = this.state;
 
-        this.setState({
-            displayValue:
-                displayValue === '0' || displayValue === 'error'
-                    ? '('
-                    : isDigit === true && isOperator === false
-                    ? displayValue + '*('
-                    : displayValue + '(',
-            isbracketsActive: true,
-            isRightBracket: false,
-            isLeftBracket: true,
-            isDigit: false,
-        });
+        if (displayValue === '0') {
+            this.setState({
+                displayValue: '(',
+                isBracketsActive: true,
+                isLeftBracket: true,
+                isOperator: true,
+                countBracket: countBracket + 1,
+                checkLeftBracket: true,
+            });
+        } else if (isOperator === false || checkLeftBracket === true) {
+            this.setState({
+                displayValue: displayValue + '(',
+                isBracketsActive: true,
+                isLeftBracket: true,
+                isOperator: true,
+                countBracket: countBracket + 1,
+                checkLeftBracket: true,
+            });
+        } else {
+            this.setState({
+                displayValue: displayValue + '*(',
+                isBracketsActive: true,
+                isLeftBracket: true,
+                isOperator: true,
+                countBracket: countBracket + 1,
+                checkLeftBracket: true,
+            });
+        }
     }
 
     rightBracket() {
-        const { displayValue, isLeftBracket, isDigit } = this.state;
+        const { displayValue, isLeftBracket, isDigit, countBracket } = this.state;
 
         if (isLeftBracket && isDigit) {
             this.setState({
-                displayValue: displayValue === '0' ? ')' : displayValue + ')',
-                isbracketsActive: true,
-                isRightBracket: true,
+                displayValue: displayValue + ')',
+                countBracket: countBracket - 1,
             });
         }
     }
