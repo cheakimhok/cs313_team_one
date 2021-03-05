@@ -820,7 +820,7 @@ class ScientificCalculator extends Component {
                             </CalculatorKey>
                             <CalculatorKey
                                 style={{ backgroundColor: '#52616b' }}
-                                onPress={() => this.power2()}
+                                onPress={() => this.performOperation('xPowY')}
                             >
                                 x
                                 <sup>
