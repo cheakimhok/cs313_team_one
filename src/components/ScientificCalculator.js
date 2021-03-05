@@ -197,6 +197,7 @@ class ScientificCalculator extends Component {
         const {
             displayValue,
             waitingForOperand,
+            isDot,
             isMemoryActive,
             isBracketsActive,
             countBracket,
@@ -217,6 +218,12 @@ class ScientificCalculator extends Component {
             } else {
                 this.setState({ displayValue: '0.', waitingForOperand: false });
             }
+        } else if (isDot === true) {
+            this.setState({
+                displayValue: displayValue + '.',
+                waitingForOperand: false,
+                isDot: true,
+            });
         } else if (isMemoryActive === true) {
             this.setState({
                 displayValue: '0.',
