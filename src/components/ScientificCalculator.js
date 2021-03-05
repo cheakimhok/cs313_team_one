@@ -99,6 +99,7 @@ class ScientificCalculator extends Component {
         displayValue: '0',
         operator: null,
         waitingForOperand: false,
+        isDot: false,
         done: false,
         shift: false,
         degree: false,
@@ -140,6 +141,7 @@ class ScientificCalculator extends Component {
             displayValue: '0',
             operator: null,
             waitingForOperand: false,
+            isDot: false,
             done: false,
             ee: false,
             isMemoryActive: false,
@@ -195,6 +197,7 @@ class ScientificCalculator extends Component {
         const {
             displayValue,
             waitingForOperand,
+            isMemoryActive,
             isBracketsActive,
             countBracket,
             isOperator,
@@ -214,16 +217,23 @@ class ScientificCalculator extends Component {
             } else {
                 this.setState({ displayValue: '0.', waitingForOperand: false });
             }
+        } else if (isMemoryActive === true) {
+            this.setState({
+                displayValue: '0.',
+                waitingForOperand: false,
+                isDot: true,
+            });
         } else if (!/\./.test(displayValue)) {
             this.setState({
                 displayValue: displayValue + '.',
                 waitingForOperand: false,
+                isDot: true,
             });
         }
     }
 
     inputDigit(digit) {
-        const { displayValue, waitingForOperand, done } = this.state;
+        const { displayValue, waitingForOperand, isDot, done } = this.state;
 
         if (waitingForOperand) {
             this.setState({
@@ -244,6 +254,8 @@ class ScientificCalculator extends Component {
                     isDigit: true,
                     isOperator: false,
                 });
+            } else if (isDot === true) {
+                this.setState({ displayValue: displayValue + digit });
             } else {
                 this.setState({
                     displayValue: displayValue === '0' ? String(digit) : displayValue + digit,
@@ -322,7 +334,6 @@ class ScientificCalculator extends Component {
                 this.setState({
                     value: newValue,
                     displayValue: String(newValue),
-                    isMemoryActive: false,
                 });
             }
 
@@ -383,6 +394,7 @@ class ScientificCalculator extends Component {
                 ...prevState.memory,
                 memory_plus: temp,
             },
+            isMemoryActive: true,
         }));
     }
 
@@ -393,24 +405,24 @@ class ScientificCalculator extends Component {
                 ...prevState.memory,
                 memory_minus: temp,
             },
+            isMemoryActive: true,
         }));
     }
 
     memoryRecall() {
-        const { displayValue } = this.state;
+        const { isMemoryActive } = this.state;
+
         let temp = (this.state.memory.memory_plus - this.state.memory.memory_minus).toString();
 
-        if (displayValue !== '0') {
+        if (isMemoryActive) {
             this.setState({
                 displayValue: temp,
                 isMemoryActive: true,
-                done: true,
             });
         } else {
             this.setState({
                 displayValue: temp,
                 isMemoryActive: false,
-                done: true,
             });
         }
     }
